@@ -1,11 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Portfolio" />
+        <meta name="author" content="Eduardo" />
+        <title>Eduardo's Portfolio</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
 <body>
+    <header>
+        <div class="site-header">
+            <h1>EDUARDO'S PORTFOLIO</h1>
+        </div>
+    </header>
     
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        
+    </nav>
+    
+    
+    <button onclick="toggleSkillsList()">Toggle Skills List</button>
+    <div id="tool-usage-display">
+        <!-- Tool usage display will be dynamically generated here -->
+    </div>
+    <button class="btn" onclick="location.href='Examples_Code/page.html'">
+        Operating
+    </button>
+    <button class="btn" onclick="location.href='Testing_Code/page.html'">
+        Not Operating
+    </button>
+    
+    <!-- Main Content -->
+    <main id="main">
+        <h3>Welcome to My Portfolio</h3>
+        <p>
+            Developing this website to showcase my professional interests and
+            achievements. With a strong passion for machine learning, I have pursued
+            focused studies and project development to advance in this field.
+            Currently specializing in systems analysis, I bring over five years of
+            experience in data science to my work. Below, you'll find a selection of
+            projects I've completed through formal courses and independent study.
+        </p>
+        
+        <!-- Skills Sections -->
+        <section class="skills-section">
+            
+            <!-- This Website Skills Section -->
+            <div id="website-skills">
+                <h3>This Website</h3>
+                <p>
+                    To create this website:
+                    <ul>
+                        <li>GitHub: Was used for version control, collaboration and hosting.</li>
+                        <li>Visual Studio Code: Was used to write the code for the website.</li>
+                        <li>Languages: HTML, CSS, and JavaScript.</li>
+                    </ul>
+                </p>
+            </div>
+            
+            <!-- Python Skills Section -->
+            <div id="python-skills">
+                <h3>Python</h3>
+                <p>
+                    "Python, widely recognized for its applications in machine learning, has been my main area of exploration and development. You can find my projects housed on my GitHub page for easy access. Below, you'll discover a link to my repository along with a breakdown of my learning journey, including the platforms like Jupyter where I've worked on these projects and the libraries I've utilized."
+                    <ul>
+                        <li>GitHub: <a href="https://github.com/Eduardodcsm/PythonP">https://github.com/Eduardodcsm/PythonP</a></li>
+                        <li>Data Analysis: Proficient in using libraries like Pandas and NumPy for data manipulation and analysis.</li>
+                        <li>Machine Learning: Experience in implementing machine learning algorithms using libraries such as Scikit-learn and TensorFlow.</li>
+                        <!-- Other skills... -->
+                    </ul>
+                </p>
+            </div>
+            
+            <!-- Web Development Skills Section -->
+            <div id="web-dev-skills">
+                <h3>Web Development</h3>
+                <p>
+                    This website was created as an assignment where the goal is to
+                    create a commercial website with a theme. The company's business was
+                    photography, and the theme is coffee.
+                </p>
+                <button class="btn" onclick="location.href='CapturedCafe/home.html'">
+                    Visit CapturedCafe Website
+                </button>
+                <ul>
+                    <li>HTML: HTML was used to create and structure the content of the website. It facilitated the creation of 4 pages.</li>
+                    <li>JavaScript: JavaScript enabled functionalities such as the contact form and gallery, allowing users to interact with the website.</li>
+                    <li>CSS: CSS was applied for styling and layout, enhancing the visual appeal and user experience of the website.</li>
+                    <li>GitHub: GitHub was used for hosting the website, version control, and documentation purposes.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="icons">
+            <a href="https://www.linkedin.com/" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/" target="_blank"><i class="bi bi-github"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="bi bi-youtube"></i></a>
+            <a href="https://www.twitter.com/" target="_blank"><i class="bi bi-twitter"></i></a>
+            <a href="https://www.reddit.com/" target="_blank"><i class="bi bi-reddit"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+        </div>
+        
+        
+    </footer>
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <!-- Add Bootstrap JS script here if you're using Bootstrap -->
 </body>
 </html>
