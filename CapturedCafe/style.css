@@ -1,0 +1,391 @@
+/* STYLE FOR ALL PAGES */
+
+
+/* Navigation links */
+.links-navigation {
+  margin-right: 20px; /* Add space to the right of the navigation */
+}
+.links-navigation a {
+  color: #F5DEB3; /* Cream text color for links */
+  text-decoration: none; /* Remove underlines from links */
+  margin-left: 20px; /* Add space between links */
+  font-size: 16px;
+  transition: color 0.3s ease-in-out; /* Transition on hover */
+}
+.links-navigation a:hover {
+  color: #D2B48C; /* Darker coffee cream color on hover */
+}
+
+/* Reset default margin and padding */
+body, h1, h2, h3, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Apply background color to the header */
+.headerpags {
+  background-color: #8B4513; /* background color */
+  color: #FFF; /* White text color */
+  padding: 10px 0; /* Add padding to the top and bottom */
+  display: flex;
+  margin-bottom: 50px; 
+  justify-content: space-between; /* Horizontal space the elements */
+  align-items: center; /* Vertical center the elements */
+}
+
+/* Body */
+body {
+  background-image: url("Imagens/fahmi-fakhrudin-nzyzAUsbV0M-unsplash.jpg");
+  background-size: cover; /* Adjust the size of the background to cover */
+  background-repeat: no-repeat; /* Avoid repeating */
+  background-attachment: fixed; /* Image fixed while roling */
+  background-position: center; /* Center the background */
+  font-family: Arial, sans-serif; /* Set the font-family */
+  color: #333; /* Text color for the body*/
+}
+
+/* Social media icons */
+.icons {
+  display: flex; /* Icons display in a row */
+  justify-content: center; /* Center the icons horizontal */
+  align-items: center; /* Center the icons vertical */
+  margin: 20px; /* Icons margin */
+}
+/* Style each icon link */
+.icons a {
+  margin: 10px; /* Add some margin around each icon link */
+  text-decoration: none; /* Remove the underline from each icon link */
+}
+/* Style each icon */
+.icons i {
+  font-size: 40px; /* font size of each icon */
+  color: #333; /* Change the color of each icon to dark gray */
+  transition: color 0.3s; /* Add a smooth transition effect to the color of each icon */
+}
+/* Change the color of each icon on hover to match their brand colors */
+.icons i.fa-facebook:hover {
+  color: #3b5998;
+}
+.icons i.fa-twitter:hover {
+  color: #1da1f2;
+}
+.icons i.fa-youtube:hover {
+  color: #ff0000;
+}
+.icons i.fa-reddit:hover {
+  color: #ff4500;
+}
+.icons i.fa-instagram:hover {
+  color: #e1306c;
+}
+
+/* Coffee-themed button style */
+button.btn {
+  background-color: rgba(107, 66, 38, 0.8); /* Coffee bean color with 80% opacity */
+  color: #fff; /* White text color for contrast */
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 5px; /* Rounded corners for a modern look */
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Button style on hover */
+button.btn:hover {
+  background-color: #543525; /* Darker coffee bean color on hover */
+}
+
+
+/* Footerpags */
+footer {
+  background-color: rgba(44, 62, 80, 0.7); /* Transparent coffee brown background color for the footer */
+  color: #ecf0f1; /* Creamy text color for the footer */
+  padding: 20px 0; /* Add padding to the top and bottom of the footer */
+  text-align: center; /* Center-align the text */
+}
+
+.footerpags {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(245, 222, 179, 0.7); /* Transparent light brown */
+  border: 1px solid #8b4513; /* Dark brown border color */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.footerpags h2 {
+  color: #e74c3c; /* Red color for headings coffee beans */
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.footerpags p {
+  color: #ecf0f1; /* Creamy text color for paragraphs coffee */
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footerpags ul {
+  list-style: none; /* Remove bullet points from the list */
+  padding: 0;
+}
+
+.footerpags li {
+  color: #ecf0f1; /* Creamy text color for list items */
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.footerpags a {
+  color: #3498db; /* Blue color for links coffee */
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.footerpags a:hover {
+  color: #2980b9; /* Darker blue color on hover */
+}
+
+/* STYLE FOR ALL PAGES */
+
+/* ============================= */
+
+/* STYLE FOR INDEX 1*/ 
+
+/* Style for the Header2 div */
+.Header2 {
+  background-color: #2d2d2d;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: normal;
+  border-bottom: 2px solid #ff9900;
+  position: relative; /* Add position relative */
+}
+
+#coffee-image {
+  opacity: 0.7;
+}
+/* Message show up in the home page in of a image */
+/*.Header2::after {
+  content:"Welcome to our website! Explore our active pages: Home, Gallery, About Us, and Contact Us. Please ensure the Contact Us form is filled out accurately to send your message.";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+} */
+
+/* Style for the coffee image */
+.coffee-image {
+  max-width: 100%;
+  border: 10px solid #fff; /* Add a white border */
+  box-shadow: 5px 5px 10px #888888; /* Add a shadow effect */
+}
+
+/* STYLE FOR INDEX 1*/ 
+
+/* ============================= */
+
+/* STYLE FOR GALLERY 2*/
+
+/* Image Gallery Section */
+
+/* Style for the Toggle Grid Padding button */
+.btn-toggle {
+  background-color: #3498db; /* Blue background color */
+  color: #fff; /* White text color */
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+/* Change button styles on hover */
+.btn-toggle:hover {
+  background-color: #2980b9; /* Darker blue color on hover */
+}
+
+/* Common styles for image containers */
+.image {
+  flex: 0 0 calc(33.33% - 2px); /* Adjusted width and removed margin */
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.image a {
+  display: block;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-decoration: none;
+  margin: 0; /* Removed margin */
+}
+
+.image img {
+  max-width: 100%;
+  height: auto;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image a:hover img {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Styles for the gallery with padding toggle */
+.img-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Toggle button styles */
+.toggle-button {
+  flex: 0 0 calc(33.33% - 2px); /* Adjusted width and removed margin */
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.toggle-button a {
+  display: block;
+  border: 1px solid #ddd;
+  padding: 0;
+  text-decoration: none;
+  margin: 0; /* Removed margin */
+}
+
+.toggle-button img {
+  max-width: 100%;
+  height: auto;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.toggle-button a:hover img {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* STYLE FOR GALLERY 2*/
+
+/* ============================= */
+
+/* STYLE FOR CONTACT 3*/
+
+/* Style for the main container with a coffee theme */
+.contact-form {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(245, 222, 179, 0.7); /* Transparent light brown */
+  border: 1px solid #8b4513; /* A dark brown border color */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading style within the main container */
+.contact-form h1 {
+  font-size: 24px;
+  color: #8b4513; /* Dark brown color for headings */
+}
+
+/* Paragraph style within the main container */
+.contact-form p {
+  font-size: 16px;
+  color: #654321; /* A medium brown color for paragraphs */
+}
+
+/* Style for the contact form itself */
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style for the headings within the contact form */
+.contact-form h2 {
+  text-align: center;
+  color: #333;
+}
+
+/* Style for labels within the contact form */
+.contact-form label {
+  margin-bottom: 5px;
+}
+
+/* Style for input and textarea fields within the contact form */
+.contact-form input,
+.contact-form textarea {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+/* Style for the "*" character within the contact form */
+.required::before {
+  content: '*';
+  color: red;
+  margin-right: 2px;
+}
+
+/* Style submit button within the contact form */
+.contact-form button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 3px;
+  border: none;
+}
+
+/* Hover effect for the submit button */
+.contact-form button:hover {
+  background-color: #0056b3;
+}
+
+/* STYLE FOR CONTACT 3*/
+
+/* ============================= */
+
+/* ABOUT US  4 */
+/* Style for the assignment overview */
+.assignment-overview {
+  background-color: #D2B48C; /* Coffee-themed background color (Light Brown) */
+  width: auto; /* Let the width adjust to content */
+  height: 200px; /* Set a fixed height for a rectangle */
+  border-radius: 10px; /* Slightly rounded corners */
+  margin: 20px auto; /* Center the section horizontal with larger vertical margin */
+  padding: 20px; /* Add padding for space inside the rectangle */
+  text-align: center; /* Center-align the text */
+  transition: transform 0.3s; /* Adding a transition effect */
+}
+
+.assignment-overview:hover {
+  transform: scale(1.02); /* Enlarge slightly on hover */
+}
+
+.assignment-overview h2 {
+  font-size: 28px; /* Slightly larger heading font size */
+  color: #4A2D13; /* Dark brown text color */
+  margin-bottom: 15px; /* Slightly for spacing below the heading */
+}
+
+.assignment-overview p {
+  font-size: 18px; /* Slightly font size for pharagraph text */
+  color: #8B4513; /* Chocolate brown text color */
+  transition: color 0.3s; /* Transition effect on color change */
+}
+
+.assignment-overview:hover p {
+  color: #4A2D13; /* text color on hover */
+}
+
+/* ABOUT US 4*/
+
+/* ============================= */
