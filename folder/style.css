@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+/* Resetting default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Body styles */
+body {
+  background: #555;  
+  color: #f2f2f2;
+  }
+
+/* Header styles */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 10%;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+/* Logo */
+.logo {
+  font-size: 24px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Navigation styles */
+nav a{
+  font-size: 18px;
+  color: #f2f2f2;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 35px;
+  transition: 0.3s;
+}
+
+/* Add hover effect on navigation links */
+.navbar a:hover,
+.navbar a.active {
+  color: #07deff;
+ }
+
+ .home {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 10%;
+ }
+.home-content {
+  max-width: 600px;
+}
+.home-content h1{
+  font-size: 56px;
+  font-weight: 700;
+}  
+
+.home-content h3{
+  font-size: 32px;
+  font-weight: 700;
+  color: #07deff;
+}  
+.home-content p{
+  font-size: 16px;
+}  
+
+/* Main content styles */
+#main {
+  padding: 20px;
+}
+
+/* Footer content styles */
+footer {
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: center;
+}
+
+.social-icons {
+  list-style: none;
+  padding: 0;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.social-icons a {
+  color: #333;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.social-icons a:hover {
+  color: #007bff; /* Change to your preferred hover color */
+}
