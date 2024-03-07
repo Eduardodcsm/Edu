@@ -187,10 +187,10 @@ section {
   width: 40px;
   height: 40px;
   background: transparent;
-  border: 2px solid #00abf0;
+  border: 2px solid var(--main-color);
   border-radius: 50%;
   font-size: 20px;
-  color: #00abf0;
+  color: var(--main-color);
   text-decoration: none;
   z-index: 1;
   overflow: hidden;
@@ -198,7 +198,7 @@ section {
 }
 
 .home-sci a:hover {
-  color: #081b29;
+  color: var(--bg-color);
 }
 
 .home-sci a::before {
@@ -208,11 +208,40 @@ section {
   left: 0;
   width: 0%;
   height: 100%;
-  background: #00abf0;
+  background: var(--main-color);
   z-index: -1;
   transition: .5s;
 }
 
 .home-sci a:hover::before {
   width: 100%;
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  background:var(--bg-color) ;
+  padding: 6rem;
+}
+.heading{
+  font-size: 5rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.about-content{
+  text-align: center;
+}
+.about-content h3{
+  font-size: 2.6rem; 
+}
+.about-content p{
+  font-size: 1.6rem;
+  margin: 2rem 0 3rem; 
+}
+.btn-box.btns {
+  display: inline-block;
+  width: 15rem;
 }
