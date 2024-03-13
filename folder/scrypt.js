@@ -14,16 +14,20 @@ let navLinks = document.querySelectorAll('header nav a');
 window.onscroll = () => {
     sections.forEach(sec => {
         let top = window.scrollY;
-        let offset = sec.offsetTop - 100; // corrected capitalization of "let"
+        let offset = sec.offsetTop - 100;
         let height = sec.offsetHeight;
         let id = sec.getAttribute('id');
 
         if (top >= offset && top < offset + height) {
-            // activate navbar links
-            navLinks.forEach(link => { // corrected variable name "links" to "link"
+         
+            navLinks.forEach(link => { 
                 link.classList.remove('active');
+                document.querySelector('header nav a[href*="' + id + ']').classList.add('active'); 
             });
-            document.querySelector('header nav a[href*="' + id + '"]').classList.add('active'); // corrected space between "nav a" and "href"
+            sec.classList.add('show-animation');
+        }
+        else{
+            sec.classList.remove('show-animation');
 
         }
     });
