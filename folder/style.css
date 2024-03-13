@@ -142,9 +142,10 @@ section {
   height: 100%;
   background: 2px solid var(--main-color);
   z-index: -1;
-  animation: homeCursorText 6s ease-in-out infinite;
+  animation: homeBgText 6s linear infinite;
   animation-delay: 2s;
 }
+
 .home-content p {
   position: relative;
   font-size: 1.6rem;
@@ -606,17 +607,20 @@ span {
 
 .animate.scroll{
   transition: 1s ease;
-  animation-delay: calc(.3s / var(--i));
-  animation: none;
+  transition-delay: calc(.3s * var(--i));
 }
-
-.about.showanimate .animate.scroll,
-.education.showanimate .animate.scroll{
-  animation-delay: calc(.3s * var(--i));
-  width: 0;
-}
-
  
+.about.show-animate .animate.scroll{
+  transition-delay: calc(.3s * var(--i));
+}
+
+.education.show-animate .animate.scroll{
+  transition-delay: calc(.3s * var(--i));
+}
+
+.skills.show-animate .animate.scroll{
+  transition-delay: calc(.3s * var(--i));
+}
 /* breakpoints */
 @media screen and (max-width:1200px){
   html{
