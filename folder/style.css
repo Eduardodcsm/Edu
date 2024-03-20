@@ -215,15 +215,17 @@ section {
 
 .home-sci {
   position: fixed;
-  bottom: 4rem; 
-  width: 170px;
-  display: flex;
-  justify-content: space-between;
+  bottom: 2rem; 
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: auto; 
+  max-width: 170px; 
   gap: 2rem;
-  z-index: 99; 
+  z-index: 99;
 }
+
 
 .home-sci a {
   position: relative;
