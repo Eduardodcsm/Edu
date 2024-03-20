@@ -1,45 +1,57 @@
-// toggle icon navbar
-let menuIcon = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
+document.addEventListener('DOMContentLoaded', function () {
+    let menuIcon = document.querySelector('#menu-icon');
+    let navbar = document.querySelector('.navbar');
+    let sections = document.querySelectorAll('section');
+    let navLinks = document.querySelectorAll('header nav a');
+    let footer = document.querySelector('footer');
+    let footerTop = footer.offsetTop;
+    let footerHeight = footer.offsetHeight;
 
-menuIcon.onclick = () => {
-    menuIcon.classList.toggle('bx-x');
-    navbar.classList.toggle('active');
-}
+    // Add show-animate class to home section initially
+    document.querySelector('section.home').classList.add('show-animate');
 
-// scroll sections
-let sections = document.querySelectorAll('section');
-let navLinks = document.querySelectorAll('header nav a');
-
-window.onscroll = () => {
-    sections.forEach(sec => {
-        let top = window.scrollY;
-        let offset = sec.offsetTop - 100;
-        let height = sec.offsetHeight;
-        let id = sec.getAttribute('id');
-
-        if (top >= offset && top < offset + height) {
-         
-            navLinks.forEach(link => { 
-                link.classList.remove('active');
-                document.querySelector('header nav a[href*="' + id + ']').classList.add('active'); 
-            });
-            sec.classList.add('show-animation');
-        }
-        else{
-            sec.classList.remove('show-animation');
-
-        }
+    // Toggle menu icon and navbar active class
+    menuIcon.addEventListener('click', function () {
+        menuIcon.classList.toggle('bx-x');
+        navbar.classList.toggle('active');
     });
 
-    // sticky header
-    let header = document.querySelector('header');
+    // Handle scroll event
+    window.addEventListener('scroll', function () {
+        let top = window.scrollY;
 
-    header.classList.toggle('sticky', window.scrollY > 100);
+        // Iterate through each section
+        sections.forEach(sec => {
+            let offset = sec.offsetTop - 100;
+            let height = sec.offsetHeight;
+            let id = sec.getAttribute('id');
 
+            // Check if the top of the window is within the section's bounds
+            if (top >= offset && top < offset + height) {
+                // Remove active class from all nav links
+                navLinks.forEach(links => {
+                    links.classList.remove('active');
+                });
+                // Add active class to the corresponding nav link
+                document.querySelector('header nav a[href="#' + id + '"]').classList.add('active');
 
-// remove toggle icon and navbar when clicked navbar links (scroll)
+                // Add show-animate class to the section
+                sec.classList.add('show-animate');
+            } else {
+                // Remove show-animate class from the section
+                sec.classList.remove('show-animate');
+            }
+        });
 
-menuIcon.classList.remove('bx-x');
-navbar.classList.remove('active');
-}
+        // Toggle sticky class on header based on scroll position
+        let header = document.querySelector('header');
+        header.classList.toggle('sticky', top > 100);
+
+        // Calculate scroll position and footer position
+        let scrollPosition = window.innerHeight + top;
+        let footerPosition = footerTop + footerHeight;
+
+        // Toggle show-animate class on footer based on scroll position
+        footer.classList.toggle('show-animate', scrollPosition >= footerPosition);
+    });
+});
