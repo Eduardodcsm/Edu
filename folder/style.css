@@ -90,7 +90,7 @@ section {
   display: flex;
   align-items: center;
   padding: 0 9%;
-  /* background: url(../images/bg.png) no-repeat; */
+  background: url('/folder/photo1.jpg') no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -213,14 +213,14 @@ section {
 .btn-box .btn:nth-child(2)::before {
   background: var(--main-color);
 }
-
 .home-sci {
   position: absolute;
-  bottom: 2rem; 
+  bottom: 4rem; 
   left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: space-between;
+
+  transform: translateX(-50%);
   width: auto; 
   max-width: 170px; 
   gap: 2rem;
@@ -228,20 +228,21 @@ section {
 
 .home-sci a {
   position: relative;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   width: 4rem; 
   height: 4rem; 
   background-color: transparent; 
-  border: 0.25rem solid var(--main-color); 
+  border: .2rem solid var(--main-color); 
   border-radius: 50%;
   font-size: 2rem; 
   color: var(--main-color);
+  z-index: 1;
   overflow: hidden;
-  transition: background-color 0.5s, border-color 0.5s; 
+  transition: .5s;
 }
-/*  
+
 .home-sci a:hover {
   color: var(--bg-color); 
 }
@@ -254,12 +255,14 @@ section {
   width: 0%;
   height: 100%;
   background: var(--main-color); 
+  z-index: -1;
   transition: .5s;
 }
 
 .home-sci a:hover::before {
   width: 100%;
-}  */
+}
+
 .about {
   display: flex;
   justify-content: center;
@@ -687,8 +690,8 @@ span {
   right: 0;
   width: 45%;
   height: 100%;
-  pointer-events: none;
   background: transparent;
+  border: 2px solid red;
   transition: 3s;
 }
 
