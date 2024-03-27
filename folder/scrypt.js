@@ -42,3 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
     footer.classList.toggle('show-animate', scrollPosition >= footerTop + footerHeight);
   });
 });
+
+ // JavaScript code to handle "Read more" button click
+ document.getElementById('readMoreBtn').addEventListener('click', function() {
+  // Toggle between displaying short and long descriptions
+  var shortDescription = document.getElementById('shortDescription');
+  var longDescription = document.getElementById('longDescription');
+  if (shortDescription.style.display === 'none') {
+    shortDescription.style.display = 'block';
+    longDescription.style.display = 'none';
+    document.getElementById('readMoreBtn').textContent = 'Read more';
+  } else {
+    shortDescription.style.display = 'none';
+    longDescription.style.display = 'block';
+    document.getElementById('readMoreBtn').textContent = 'Read less';
+  }
+});

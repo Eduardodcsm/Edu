@@ -303,15 +303,19 @@ span {
   width: 25rem;
   height: 25rem;
   border-radius: 50%;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.about-img img{
-  width: 80%;
+
+.about-img img {
+  width: 100%;
+  height: auto;
   border-radius: 50%;
   border: .2rem solid var(--second-bg-color);
 }
+
 
 .about-content {
   text-align: center;
