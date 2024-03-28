@@ -1,0 +1,17 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #FFF;
+  position: relative;
+  overflow: hidden;
+  font-size: 100%;
+  text-align: center;
+}
+
+.background {
+  /* Define your background styles here */
+}
+
+.criterion {
+  font-size: 1.6rem;
+  position: absolute;
+}
