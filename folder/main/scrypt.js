@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
- // JavaScript code to handle "Read more" button click
- document.getElementById('readMoreBtn').addEventListener('click', function() {
+// JavaScript code to handle "Read more" button click
+document.getElementById('readMoreBtn').addEventListener('click', function() {
   // Toggle between displaying short and long descriptions
   var shortDescription = document.getElementById('shortDescription');
   var longDescription = document.getElementById('longDescription');

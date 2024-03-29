@@ -21,7 +21,7 @@
 /* HTML styles */
 html {
   font-size: 62.5%;
-  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 /* Body styles */
 body {
@@ -90,14 +90,14 @@ section {
   display: flex;
   align-items: center;
   padding: 0 9%;
-  background: url('/folder/photo1.jpg') no-repeat;
+  background-image: url('CapturedCafe\Imagens\fahmi-fakhrudin-nzyzAUsbV0M-unsplash.jpg'); 
   background-size: cover;
   background-position: center;
 }
 
+
 .home-content {
   max-width: 60rem;
-  z-index: 99;
 }
 
 .home-content h1 {
@@ -695,7 +695,6 @@ span {
   width: 45%;
   height: 100%;
   background: transparent;
-  border: 2px solid red;
   transition: 3s;
 }
 
