@@ -150,7 +150,7 @@ section {
 
 .home-content p {
   position: relative;
-  font-size: 1.6rem;
+  font-size: 2rem;
   margin: 2rem 0 4rem;
 }
 
@@ -272,6 +272,7 @@ section {
   background:var(--second-bg-color) ;
   padding-bottom: 6rem;
 }
+
 .heading{
   position: relative;
   font-size: 5rem;
@@ -316,7 +317,6 @@ span {
   border: .2rem solid var(--second-bg-color);
 }
 
-
 .about-content {
   text-align: center;
 }
@@ -327,7 +327,7 @@ span {
 }
 .about-content p {
   position: relative;
-  font-size: 1.6rem;
+  font-size: 2rem;
   margin: 2rem 0 3rem; 
 }
 .btn-box.btns {
