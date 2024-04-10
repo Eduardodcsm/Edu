@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-
 * {
   margin: 0;
   padding: 0;
@@ -21,7 +19,7 @@
 /* HTML styles */
 html {
   font-size: 62.5%;
-  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 /* Body styles */
 body {
@@ -90,11 +88,7 @@ section {
   display: flex;
   align-items: center;
   padding: 0 9%;
-  background-image: url('photo1.jpg'); 
-  background-size: cover;
-  background-position: center;
 }
-
 
 .home-content {
   max-width: 60rem;
@@ -697,7 +691,6 @@ span {
   background: transparent;
   transition: 3s;
 }
-
 
 .home-imgHover.show-img{
   width: 100%;
