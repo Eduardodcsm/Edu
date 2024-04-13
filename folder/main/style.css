@@ -108,7 +108,7 @@ section {
 
 .home-content .text-animate {
   position: relative;
-  width: 32.8rem;
+  width: 30rem;
 }
 
 .home-content .text-animate h3 {
@@ -136,7 +136,7 @@ section {
   border-right: 2px solid var(--main-color);
   z-index: -1;
 }
-.home.show-animate .home-content .text-animate h3::before{
+.home.show-animate .home-content .text-animate h3::before {
 
   animation: homeCursorText 6s linear infinite;
   animation-delay: 2s;
@@ -683,23 +683,25 @@ span {
 }
 
 .home-imgHover {
-  position:absolute;
+  position: absolute;
   top: 0;
   right: 0;
   width: 45%;
   height: 100%;
-  background: transparent;
-  transition: 3s;
+  background: url('back.jpg') no-repeat center center/cover;
+  transition: background-color 0.8s ease;
 }
 
-.home-imgHover.show-img{
+.home-imgHover.show-img {
   width: 100%;
 }
 
 .home-imgHover:hover {
-  background: var(--bg-color);
+  background-color: var(--bg-color); 
   opacity: .8;
+  animation: enlarge 0.8s ease forwards;
 }
+
 
 .home-imgHover.show-img.home-imgHover:hover {
   background: transparent;
@@ -712,7 +714,7 @@ span {
 
 .logo .animate,
 .navbar .animate,
-#menu-icon .animete,
+#menu-icon .animate,
 .home.show-animate .animate {
   animation: showRight 1s ease forwards;
   animation-delay: calc(.3s * var(--i));
@@ -887,7 +889,7 @@ section:nth-child(odd) .animate.scroll,
   
   0%, 10%, 100% {
     
-    background-position: -33rem 0;
+    background-position: -30rem 0;
   }
   
   65%, 85% {
@@ -924,4 +926,12 @@ section:nth-child(odd) .animate.scroll,
       width: 0;
     }
 
+}
+@keyframes enlarge {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
 }
