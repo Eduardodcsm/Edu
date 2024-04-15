@@ -539,6 +539,7 @@ span {
   min-height: auto;
   padding-bottom: 7rem;
 }
+
 .contact h2 {
   display: inline-block;
   left: 50%;
@@ -589,7 +590,7 @@ span {
   height: 100%;
   background: var(--second-bg-color);
   border-radius: .6rem;
-  z-index: -1;
+  z-index: 1;
   transition: .5s; 
 }
 
@@ -676,7 +677,7 @@ span {
   width: 100%;
   height: 100%;
   background: var(--bg-color);
-  z-index: 1;
+  z-index: 98;
 }
 .animate.home-img{
   width: 50%;
@@ -742,9 +743,6 @@ section:nth-child(odd) .animate.scroll,
   width: 0;
 }
 
-.skills.show-animate .animate.scroll{
-  transition-delay: calc(.3s * var(--i));
-}
 /* breakpoints */
 @media (max-width:1200px){
   html{
@@ -804,7 +802,7 @@ section:nth-child(odd) .animate.scroll,
       height: 100%;
       background: var(--bg-color);
       border-top: .1rem solid rgba(0, 0, 0, .2);
-      z-index: -1;
+      z-index: 1;
       transition: .25s ease;
       transition-delay: 0s;
     }

@@ -13,7 +13,7 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body> 
-  <!-- header desigh -->
+  <!-- header design -->
   <header class="header">
     <a href="#" class="logo">Eduardo's Portfolio<span class="animate" style="--i:1;"></span></a>
     
@@ -31,40 +31,38 @@
     </nav>
   </header>
 
-  <!-- home section desigh -->
-<section class="home show-animate" id="home">
-  <div class="home-content">
-    <h1>Hi, I'm <span>Eduardo</span><span class="animate" style="--i:3;"></span></h1> 
-    <div class="text-animate">
-      <h3>A System Analyst</h3>
-      <span class="animate" style="--i:4;"></span> 
+  <!-- home section design -->
+  <section class="home" id="home">
+    <div class="home-content">
+      <h1>Hi, I'm <span>Eduardo</span><span class="animate" style="--i:3;"></span></h1> 
+      <div class="text-animate">
+        <h3>A System Analyst</h3>
+        <span class="animate" style="--i:4;"></span> 
+      </div>
+      <p>
+        "To showcase my learning and experiences, I've updated this website. Here, you can find an 'About Me' section, details about my education and experience, a list of skills, and a contact form.”
+        <span class="animate" style="--i:5;"></span>
+
+      </p>
+      <div class="btn-box">
+        <a href="#contact" class="btn">Hire Me</a>
+        <a href="#" class="btn">Let's Talk</a>
+        <span class="animate" style="--i:6;"></span>
+      </div>
     </div>
-    <p>
-      "To showcase my learning and experiences, I've updated this website. Here, you can find an 'About Me' section, details about my education and experience, a list of skills, and a contact form.”
-      <span class="animate" style="--i:5;"></span>
-
-    </p>
-    <div class="btn-box">
-      <a href="#" class="btn">Hire Me</a>
-      <a href="#" class="btn">Let's Talk</a>
-      <span class="animate" style="--i:6;"></span>
+    <div class="home-sci">
+      <a href="https://www.linkedin.com/in/educs/"><i class='bx bxl-linkedin'></i></a>
+      <a href="https://github.com/Eduardodcsm"><i class='bx bxl-github'></i></a>
+      <a href="https://www.instagram.com/_educsilva/"><i class='bx bxl-instagram'></i></a>
+      <span class="animate" style="--i:7;"></span>
     </div>
-  </div>
-  <div class="home-sci">
-    <a href="https://www.linkedin.com/in/educs/"><i class='bx bxl-linkedin'></i></a>
-    <a href="https://github.com/Eduardodcsm"><i class='bx bxl-github'></i></a>
-    <a href="https://www.instagram.com/_educsilva/"><i class='bx bxl-instagram'></i></a>
-    <span class="animate" style="--i:7;"></span>
-  </div>
-  <div class="home-imgHover"></div>
-<span class="animate home-img" style="--i:8;"></span>
+    <div class="home-imgHover"></div>
+    <span class="animate home-img" style="--i:8;"></span>
+  </section>
 
-</section>
-
-  <!-- about section desigh -->
+  <!-- about section design -->
   <section class="about" id="about">
-    <h2 class="heading">About <span>Me</span><span class="animate scroll" style="--i:1;"></span>
-    </h2>
+    <h2 class="heading">About <span>Me</span><span class="animate scroll" style="--i:1;"></span></h2>
   
     <div class="about-img">
       <img src="folder/main/photo1.jpg" alt="">
@@ -150,8 +148,9 @@
     </div>
   </section>
 
+  <!-- Skills  -->
   <section class="skills" id="skills">
-    <h2 class="heading">My <span>Skills<span class="animate scroll" style="--i:1;"></span></span></h2>
+    <h2 class="heading">My <span>Skills</span><span class="animate scroll" style="--i:1;"></span></h2>
   
     <div class="skills-row">
       <div class="skills-column">
@@ -179,9 +178,8 @@
           <span class="animate scroll" style="--i:3;"></span>
         </div>
       </div>
-  
-      <div class="skills-column">
-        <h3 class="title">Professional Skills<span class="animate scroll" style="--i:5;"></span></h3>
+        <div class="skills-column">
+        <h3 class="title">Professional Skills<span class="animate scroll" style="--i:4;"></span></h3>
         <div class="skills-box">
           <div class="skills-content">
             <div class="progress">
@@ -201,46 +199,55 @@
               <div class="bar"><span style="width: 60%;"></span></div>
             </div>
           </div>
-          <span class="animate scroll" style="--i:6;"></span>
+          <span class="animate scroll" style="--i:5;"></span>
         </div>
       </div>
     </div>
   </section>
   
-<!-- contact section design -->
-<section class="contact" id="contact">
-  <h2 class="heading">Contact Me! <span class="animate scroll" data-index="1"></span></h2>
-
-  <form action="your-form-handler.php" method="post"> <div class="input-group">  <div class="input-field">
+<!-- Contact -->
+  <section class="contact" id="contact">
+  <h2 class="heading">Contact <span>Me!</span><span class="animate scroll" style="--i:1;"></span></h2>
+  <form action="#">
+    <div class="input-box">
+      <div class="input-field">
         <input type="text" name="full_name" placeholder="Full Name" required>
         <span class="focus"></span>
       </div>
+
       <div class="input-field">
         <input type="email" name="email" placeholder="Email Address" required>
         <span class="focus"></span>
       </div>
+
+      <span class="animate scroll" style="--i:3;"></span>
     </div>
-    <div class="input-group">
+
+    <div class="input-box">
       <div class="input-field">
-        <input type="number" name="mobile_number" placeholder="Mobile Number" required>
+        <input type="tel" name="mobile_number" placeholder="Mobile Number" required>
         <span class="focus"></span>
       </div>
+
       <div class="input-field">
         <input type="text" name="subject" placeholder="Email Subject" required>
         <span class="focus"></span>
       </div>
+      <span class="animate scroll" style="--i:5;"></span>
     </div>
 
     <div class="textarea-field">
       <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
       <span class="focus"></span>
+      <span class="animate scroll" style="--i:7;"></span>
     </div>
 
     <div class="btn-box btns">
       <button type="submit" class="btn">Submit</button>
+      <span class="animate scroll" style="--i:9;"></span>
     </div>
   </form>
-</section>
+  </section>
 
 
   <!-- Footer Design -->

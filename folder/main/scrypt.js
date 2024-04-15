@@ -16,6 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
     homeSci.classList.toggle('active');
   });
 
+  // Scroll to Contact Section when Menu Icon is clicked
+  menuIcon.addEventListener('click', () => {
+    const contactSection = document.querySelector('#contact');
+    contactSection.scrollIntoView({ behavior: 'smooth' });
+  });
+
   window.addEventListener('scroll', () => {
     const top = window.scrollY;
     const header = document.querySelector('header');
@@ -38,6 +44,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const scrollPosition = window.scrollY + window.innerHeight;
     footer.classList.toggle('show-animate', scrollPosition >= footerTop + footerHeight);
+
+    // Check if the contact section is in view
+    const contactSection = document.querySelector('#contact');
+    const contactOffset = contactSection.offsetTop - 100;
+    const contactHeight = contactSection.offsetHeight;
+
+    if (top >= contactOffset && top < contactOffset + contactHeight) {
+      contactSection.classList.add('show-animate');
+    } else {
+      contactSection.classList.remove('show-animate');
+    }
   });
 
   // JavaScript code to handle "Read more" button click
