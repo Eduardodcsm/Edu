@@ -7,27 +7,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const footer = document.querySelector('footer');
   const footerTop = footer.offsetTop;
   const footerHeight = footer.offsetHeight;
+  const header = document.querySelector('header');
 
+  // Add 'show-animate' class to the home section initially
   document.querySelector('section.home').classList.add('show-animate');
 
+  // Toggle menu icon and navbar
   menuIcon.addEventListener('click', () => {
     menuIcon.classList.toggle('bx-x');
     navbar.classList.toggle('active');
     homeSci.classList.toggle('active');
   });
 
-  // Scroll to Contact Section when Menu Icon is clicked
-  menuIcon.addEventListener('click', () => {
-    const contactSection = document.querySelector('#contact');
-    contactSection.scrollIntoView({ behavior: 'smooth' });
-  });
-
+  // Scroll event listener
   window.addEventListener('scroll', () => {
     const top = window.scrollY;
-    const header = document.querySelector('header');
 
+    // Toggle 'sticky' class for the header
     header.classList.toggle('sticky', top > 100);
 
+    // Highlight active navigation links and trigger animations for sections
     sections.forEach(sec => {
       const offset = sec.offsetTop - 100;
       const height = sec.offsetHeight;
@@ -42,29 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Toggle 'show-animate' class for the footer
     const scrollPosition = window.scrollY + window.innerHeight;
     footer.classList.toggle('show-animate', scrollPosition >= footerTop + footerHeight);
 
-    // Check if the contact section is in view
+    // Add 'show-animate' class to the contact section
     const contactSection = document.querySelector('#contact');
     const contactOffset = contactSection.offsetTop - 100;
-    const contactHeight = contactSection.offsetHeight;
-
-    if (top >= contactOffset && top < contactOffset + contactHeight) {
+    if (top >= contactOffset) {
       contactSection.classList.add('show-animate');
     } else {
       contactSection.classList.remove('show-animate');
     }
-  });
-
-  // JavaScript code to handle "Read more" button click
-  const readMoreBtn = document.getElementById('readMoreBtn');
-  readMoreBtn.addEventListener('click', () => {
-    const shortDescription = document.getElementById('shortDescription');
-    const longDescription = document.getElementById('longDescription');
-
-    shortDescription.style.display = shortDescription.style.display === 'none' ? 'block' : 'none';
-    longDescription.style.display = longDescription.style.display === 'none' ? 'block' : 'none';
-    readMoreBtn.textContent = shortDescription.style.display === 'none' ? 'Read more' : 'Read less';
   });
 });
