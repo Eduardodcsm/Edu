@@ -67,3 +67,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const readMoreBtn = document.getElementById("readMoreBtn");
+  const shortDescription = document.getElementById("shortDescription");
+  const longDescription = document.getElementById("longDescription");
+
+  readMoreBtn.addEventListener("click", function() {
+    if (shortDescription.style.display === "none") {
+      shortDescription.style.display = "block";
+      longDescription.style.display = "none";
+      readMoreBtn.innerText = "Read more";
+    } else {
+      shortDescription.style.display = "none";
+      longDescription.style.display = "block";
+      readMoreBtn.innerText = "Read less";
+    }
+  });
+});
