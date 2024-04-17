@@ -19,6 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
     homeSci.classList.toggle('active');
   });
 
+  // Smooth scrolling for navigation links
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      const yOffset = -100; // Adjust as needed
+      const y = targetSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({top: y, behavior: 'smooth'});
+    });
+  });
+
   // Scroll event listener
   window.addEventListener('scroll', () => {
     const top = window.scrollY;
