@@ -100,10 +100,12 @@ document.addEventListener("DOMContentLoaded", function() {
   // Get the button and popup elements
   const suggestionBtn = document.getElementById("suggestionBtn");
   const suggestionPopup = document.getElementById("suggestionPopup");
+  const thankYouMessage = document.getElementById("thankYouMessage"); // Thank you message element
 
   // Function to open the popup
   function openPopup() {
     suggestionPopup.style.display = "block";
+    thankYouMessage.style.display = "none"; // Hide thank you message initially
   }
 
   // Function to close the popup
@@ -124,5 +126,6 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("Submitted suggestion:", suggestionText);
     // Here you can send the suggestion to your backend using AJAX or fetch
     closePopup(); // Close the popup after submission
+    thankYouMessage.style.display = "block"; // Display thank you message
   });
 });
