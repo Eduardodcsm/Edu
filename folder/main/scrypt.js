@@ -25,9 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const targetId = link.getAttribute('href');
       const targetSection = document.querySelector(targetId);
-      const yOffset = -100; // Adjust as needed
-      const y = targetSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({top: y, behavior: 'smooth'});
+      if (targetSection) {
+        const yOffset = -100; // Adjust as needed
+        const y = targetSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({top: y, behavior: 'smooth'});
+      }
     });
   });
 
@@ -66,10 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
       contactSection.classList.remove('show-animate');
     }
   });
-});
 
-
-document.addEventListener("DOMContentLoaded", function() {
+  // Read more/less button functionality
   const readMoreBtn = document.getElementById("readMoreBtn");
   const shortDescription = document.getElementById("shortDescription");
   const longDescription = document.getElementById("longDescription");
@@ -84,5 +84,45 @@ document.addEventListener("DOMContentLoaded", function() {
       longDescription.style.display = "block";
       readMoreBtn.innerText = "Read less";
     }
+  });
+
+  // Handling click event for the "Other Projects" link
+  const otherProjectsLink = document.querySelector('a[href="folder/pages/page.html"]');
+  if (otherProjectsLink) {
+    otherProjectsLink.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent default navigation behavior
+      window.location.href = otherProjectsLink.href; // Navigate to the specified URL
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Get the button and popup elements
+  const suggestionBtn = document.getElementById("suggestionBtn");
+  const suggestionPopup = document.getElementById("suggestionPopup");
+
+  // Function to open the popup
+  function openPopup() {
+    suggestionPopup.style.display = "block";
+  }
+
+  // Function to close the popup
+  function closePopup() {
+    suggestionPopup.style.display = "none";
+  }
+
+  // Event listener for the button click
+  suggestionBtn.addEventListener("click", openPopup);
+
+  // Event listener for the close button click
+  document.getElementById("closeBtn").addEventListener("click", closePopup);
+
+  // Event listener for submitting the form (you can handle this part according to your backend)
+  document.getElementById("suggestionForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submission
+    const suggestionText = document.getElementById("suggestionText").value;
+    console.log("Submitted suggestion:", suggestionText);
+    // Here you can send the suggestion to your backend using AJAX or fetch
+    closePopup(); // Close the popup after submission
   });
 });
