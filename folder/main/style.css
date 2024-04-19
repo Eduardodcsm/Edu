@@ -258,10 +258,42 @@ section {
   position: absolute;
   top: 20px;
   right: 20px;
-  color: var(--text-color); 
+  color: var(--text-color);
   font-size: 2rem;
   cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  background-color: transparent;
+  border: .2rem solid var(--main-color);
+  border-radius: 50%;
+  z-index: 1;
+  overflow: hidden;
+  transition: .5s;
 }
+
+.close:hover {
+  color: var(--bg-color);
+}
+
+.close::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--main-color);
+  z-index: -1;
+  transition: .5s;
+}
+
+.close:hover::before {
+  width: 100%;
+}
+
 
 .home-sci {
   position: absolute;
