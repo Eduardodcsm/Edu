@@ -294,7 +294,6 @@ section {
   width: 100%;
 }
 
-
 .home-sci {
   position: absolute;
   bottom: 4rem; 
@@ -1024,3 +1023,4 @@ section:nth-child(odd) .animate.scroll,
     transform: scale(1);
   }
 }
+

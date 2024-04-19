@@ -94,18 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = otherProjectsLink.href; // Navigate to the specified URL
     });
   }
-});
 
-document.addEventListener("DOMContentLoaded", function() {
   // Get the button and popup elements
   const suggestionBtn = document.getElementById("suggestionBtn");
   const suggestionPopup = document.getElementById("suggestionPopup");
-  const thankYouMessage = document.getElementById("thankYouMessage"); // Thank you message element
 
   // Function to open the popup
   function openPopup() {
     suggestionPopup.style.display = "block";
-    thankYouMessage.style.display = "none"; // Hide thank you message initially
   }
 
   // Function to close the popup
@@ -122,10 +118,31 @@ document.addEventListener("DOMContentLoaded", function() {
   // Event listener for submitting the form (you can handle this part according to your backend)
   document.getElementById("suggestionForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent default form submission
-    const suggestionText = document.getElementById("suggestionText").value;
-    console.log("Submitted suggestion:", suggestionText);
-    // Here you can send the suggestion to your backend using AJAX or fetch
-    closePopup(); // Close the popup after submission
-    thankYouMessage.style.display = "block"; // Display thank you message
+    const formData = new FormData(this);
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log("Form submission successful:", data);
+      closePopup(); // Close the popup after successful submission
+      // Show the thank you message
+      document.getElementById('thankYouMessage').style.display = 'block';
+    })
+    .catch(error => {
+      console.error("There was an error with form submission:", error);
+      // Optionally, you can display an error message to the user
+    })
+    .finally(() => {
+      // Add the 'message-sent' class regardless of the form submission result
+      document.getElementById('thankYouMessage').classList.add('message-sent');
+    });    
   });
 });
