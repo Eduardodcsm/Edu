@@ -5,12 +5,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('section');
   const navLinks = document.querySelectorAll('header nav a');
   const footer = document.querySelector('footer');
-  const footerTop = footer.offsetTop;
-  const footerHeight = footer.offsetHeight;
+  const footerTop = footer.offsetTop; // Potential issue if footer is null
+  const footerHeight = footer.offsetHeight; // Potential issue if footer is null
   const header = document.querySelector('header');
+  const suggestionPopup = document.getElementById("suggestionPopup");
+  const readMoreBtn = document.getElementById("readMoreBtn");
+  const shortDescription = document.getElementById("shortDescription");
+  const longDescription = document.getElementById("longDescription");
+  const otherProjectsLink = document.querySelector('a[href="folder/pages/page.html"]');
+  const suggestionForm = document.getElementById("suggestionForm");
+  const thankYouSection = document.querySelector('#thankYouSection');
 
   // Add 'show-animate' class to the home section initially
   document.querySelector('section.home').classList.add('show-animate');
+
+  // Ensure footer exists before accessing its properties
+  if (footer) {
+    // Toggle 'show-animate' class for the footer
+    const scrollPosition = window.scrollY + window.innerHeight;
+    footer.classList.toggle('show-animate', scrollPosition >= footerTop + footerHeight);
+  }
 
   // Toggle menu icon and navbar
   menuIcon.addEventListener('click', () => {
@@ -58,22 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Toggle 'show-animate' class for the footer
     const scrollPosition = window.scrollY + window.innerHeight;
     footer.classList.toggle('show-animate', scrollPosition >= footerTop + footerHeight);
-
-    // Add 'show-animate' class to the contact section
-    const contactSection = document.querySelector('#contact');
-    const contactOffset = contactSection.offsetTop - 100;
-    if (top >= contactOffset) {
-      contactSection.classList.add('show-animate');
-    } else {
-      contactSection.classList.remove('show-animate');
-    }
   });
 
   // Read more/less button functionality
-  const readMoreBtn = document.getElementById("readMoreBtn");
-  const shortDescription = document.getElementById("shortDescription");
-  const longDescription = document.getElementById("longDescription");
-
   readMoreBtn.addEventListener("click", function() {
     if (shortDescription.style.display === "none") {
       shortDescription.style.display = "block";
@@ -87,17 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Handling click event for the "Other Projects" link
-  const otherProjectsLink = document.querySelector('a[href="folder/pages/page.html"]');
   if (otherProjectsLink) {
     otherProjectsLink.addEventListener('click', (e) => {
       e.preventDefault(); // Prevent default navigation behavior
       window.location.href = otherProjectsLink.href; // Navigate to the specified URL
     });
   }
-
-  // Get the button and popup elements
-  const suggestionBtn = document.getElementById("suggestionBtn");
-  const suggestionPopup = document.getElementById("suggestionPopup");
 
   // Function to open the popup
   function openPopup() {
@@ -116,33 +112,32 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById("closeBtn").addEventListener("click", closePopup);
 
   // Event listener for submitting the form (you can handle this part according to your backend)
-  document.getElementById("suggestionForm").addEventListener("submit", function(event) {
+  suggestionForm.addEventListener("submit", async (event) => {
     event.preventDefault(); // Prevent default form submission
-    const formData = new FormData(this);
+    const formData = new FormData(suggestionForm);
 
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData
-    })
-    .then(response => {
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      return response.json();
-    })
-    .then(data => {
+
+      const data = await response.json();
       console.log("Form submission successful:", data);
       closePopup(); // Close the popup after successful submission
-      // Show the thank you message
-      document.getElementById('thankYouMessage').style.display = 'block';
-    })
-    .catch(error => {
+      // Display a thank you message
+      thankYouSection.style.display = 'block';
+      thankYouSection.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        thankYouSection.style.display = 'none';
+      }, 3000); // Adjust the time (in milliseconds) as needed
+    } catch (error) {
       console.error("There was an error with form submission:", error);
       // Optionally, you can display an error message to the user
-    })
-    .finally(() => {
-      // Add the 'message-sent' class regardless of the form submission result
-      document.getElementById('thankYouMessage').classList.add('message-sent');
-    });    
+    }
   });
 });
