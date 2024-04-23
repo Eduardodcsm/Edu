@@ -25,6 +25,10 @@ html {
 body {
   background: var(--bg-color);
   color: var(--text-color);
+  padding-top: 6rem;
+}
+html, body {
+  height: 100%;
 }
 /* Header styles */
 .header {
@@ -37,7 +41,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
+  z-index: 3;
   transition: .3s;
 }
 
@@ -83,6 +87,7 @@ section {
   min-height: 100vh;
   padding: 10rem 9% 2rem;
 }
+
 
 .home {
   display: flex;
