@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetId = link.getAttribute('href');
       const targetSection = document.querySelector(targetId);
       if (targetSection) {
-        const yOffset = -100; // Adjust as needed
+        const yOffset = -50; // Adjust as needed
         const y = targetSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({top: y, behavior: 'smooth'});
       }

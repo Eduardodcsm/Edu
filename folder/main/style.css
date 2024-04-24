@@ -25,10 +25,6 @@ html {
 body {
   background: var(--bg-color);
   color: var(--text-color);
-  padding-top: 6rem;
-}
-html, body {
-  height: 100%;
 }
 /* Header styles */
 .header {
@@ -52,7 +48,7 @@ html, body {
 /* Logo */
 .logo {
   position: relative;
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: var(--text-color);
   font-weight: 600;
 }
@@ -62,7 +58,7 @@ html, body {
   position: relative;
 }
 .navbar a {
-  font-size: 1.7rem;
+  font-size: 2rem;
   color: var(--text-color);
   font-weight: 500;
   margin-left: 3.5rem;
@@ -86,13 +82,16 @@ html, body {
 section {
   min-height: 100vh;
   padding: 10rem 9% 2rem;
+  /* padding: 10rem 9% 2rem; */
 }
 
 
 .home {
   display: flex;
   align-items: center;
-  padding: 0 9%;
+  padding: 10rem 9% 2rem;
+
+  /* padding: 0 9%; */
 }
 
 .home-content {
@@ -150,7 +149,7 @@ section {
 
 .home-content p {
   position: relative;
-  font-size: 2rem;
+  font-size: 2.3rem;
   margin: 2rem 0 4rem;
 }
 
@@ -463,7 +462,7 @@ span {
 }
 .about-content p {
   position: relative;
-  font-size: 2rem;
+  font-size: 2.3rem;
   margin: 2rem 0 3rem; 
 }
 .btn-box.btns {
@@ -563,7 +562,7 @@ span {
   width: 100%;
 }
 .education-content .content .year {
-  font-size: 1.5rem;
+  font-size: 2.3rem;
   color: var(--main-color);
   padding-bottom: .5rem;
 }
@@ -573,10 +572,10 @@ span {
 }
 
 .education-content .content h3 {
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 .education-content .content p {
-  font-size: 1.6rem;
+  font-size: 2rem;
   padding-top: .5rem;
 }
 
@@ -615,7 +614,7 @@ span {
   border: .2rem solid var(--main-color);
   border-radius: .6rem;
   padding: .5rem 1.5rem;
-  z-index: 1;
+  z-index: 0;
   overflow: hidden;
 }
 .skills-box .skills-content::before { 
@@ -638,7 +637,7 @@ span {
 }
 
 .skills-content .progress h3 {
-  font-size: 1.7rem;
+  font-size: 2.3rem;
   display: flex;
   justify-content: space-between;
 }
@@ -677,6 +676,7 @@ span {
 .skills-column:nth-child(2) .skills-content .progress:nth-child(3) .bar span {
   width: 90%;
 } 
+
 .contact {
   min-height: auto;
   padding-bottom: 7rem;
@@ -712,7 +712,7 @@ span {
   width: 100%;
   height: 100%;
   padding: 1.5rem;
-  font-size: 1.6rem;
+  font-size: 2.3rem;
   color: var(--text-color);
   background: transparent;
   border-radius: .6rem;
