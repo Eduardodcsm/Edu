@@ -56,6 +56,7 @@ body {
 /* Navigation styles */
 .navbar {
   position: relative;
+  z-index: 2;
 }
 .navbar a {
   font-size: 2rem;
@@ -82,21 +83,19 @@ body {
 section {
   min-height: 100vh;
   padding: 10rem 9% 2rem;
-  /* padding: 10rem 9% 2rem; */
 }
-
 
 .home {
   display: flex;
   align-items: center;
   padding: 10rem 9% 2rem;
-
-  /* padding: 0 9%; */
+  overflow: hidden;
+  z-index: 1; 
 }
 
 .home-content {
   max-width: 60rem;
-  z-index: 1;
+  z-index: 2;
 }
 
 .home-content h1 {
@@ -105,6 +104,7 @@ section {
   font-size: 5.8rem;
   font-weight: 700;
   line-height: 1.3;
+  z-index: 2; 
 }
 
 .home-content h1 span {
@@ -114,6 +114,12 @@ section {
 .home-content .text-animate {
   position: relative;
   width: 30rem;
+  z-index: 2;
+}
+.text-animate {
+  position: relative;
+  width: 30rem;
+  z-index: 2;
 }
 
 .home-content .text-animate h3 {
@@ -121,15 +127,21 @@ section {
   font-weight: 700;
   color: transparent;
   -webkit-text-stroke: .7px var(--main-color);
-  background-image: linear-gradient(var(--main-color),var(--main-color));
+  background-image: linear-gradient(var(--main-color), var(--main-color));
   background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-position: 0 0;
-  
+  transition: background-color 0.5s ease;
+  z-index: 2;
 }
+.home-content .text-animate h3:hover {
+  background-color: var(--main-color);
+}
+
 .home.show-animate .home-content .text-animate h3{
   animation: homeBgText 6s linear infinite;
   animation-delay: 2s;
+  z-index: 2;
 }
 .home-content .text-animate h3::before {
   content: '';
@@ -139,18 +151,19 @@ section {
   width: 0;
   height: 100%;
   border-right: 2px solid var(--main-color);
-  z-index: -1;
+  z-index: 1;
 }
 .home.show-animate .home-content .text-animate h3::before {
-
   animation: homeCursorText 6s linear infinite;
   animation-delay: 2s;
+  z-index: 1;
 }
 
 .home-content p {
   position: relative;
   font-size: 2.3rem;
   margin: 2rem 0 4rem;
+  z-index: 2;
 }
 
 .btn-box {
@@ -159,6 +172,7 @@ section {
   justify-content: space-between;
   width: 34.5rem;
   height: 5rem;
+  z-index: 2; 
 }
 
 .btn-box .btn {
@@ -220,8 +234,8 @@ section {
   width: 100%;
   height: 100%;
   background-color: rgba(8, 27, 41, 0.8);
-  animation: showPopup 3s forwards;
-
+  animation: showPopup 10s forwards;
+  z-index: 2;
 }
 
 .popup-content {
@@ -297,7 +311,6 @@ section {
 .close:hover::before {
   width: 100%;
 }
-
 .thank-you {
   display: none;
   position: fixed;
@@ -306,19 +319,14 @@ section {
   width: 100%;
   height: 100%;
   background-color: rgba(8, 27, 41, 0.8);
-  animation: showPopup 3s forwards;
-  transition: opacity 0.5s ease;
+  z-index: 2;
 }
 
-.thank-you-box {
+.thank-you-content {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.thank-you-content {
-  display: inline-block; /* Change from position relative to inline-block */
   width: 80%;
   max-width: 600px;
   background-color: var(--bg-color);
@@ -327,8 +335,6 @@ section {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   border: 2px solid var(--main-color);
   text-align: center;
-  animation: fadeIn 0.5s ease-in-out, slideOut 0.5s ease 2s forwards;
-  transition: opacity 0.5s ease;
 }
 
 .thank-you-content h2 {
@@ -344,10 +350,6 @@ section {
 }
 
 
-
-.animate {
-  animation: fadeIn 0.5s ease-in-out, slideOut 0.5s ease 2s forwards;
-}
 .home-sci {
   position: absolute;
   bottom: 4rem; 
@@ -561,6 +563,7 @@ span {
 .education-content .content:hover::before {
   width: 100%;
 }
+
 .education-content .content .year {
   font-size: 2.3rem;
   color: var(--main-color);
@@ -579,109 +582,10 @@ span {
   padding-top: .5rem;
 }
 
-.skills {  
-  min-height: auto;
-  padding-bottom: 7rem;
-  background: var(--second-bg-color);
-}
-.skills h2 {
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.skills .skills-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5rem;
-}
-
-.skills-row .skills-column {
-  flex: 1 1 40rem;
-}
-
-.skills-column .title {
-  position: relative;
-  display: inline-block;
-  font-size: 2.5rem;
-  margin: 0 0 1.5rem;
-} 
-.skills-column .skills-box {
-  position: relative;
-} 
-
-.skills-box .skills-content {
-  position: relative;
-  border: .2rem solid var(--main-color);
-  border-radius: .6rem;
-  padding: .5rem 1.5rem;
-  z-index: 0;
-  overflow: hidden;
-}
-.skills-box .skills-content::before { 
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: var(--second-bg-color);
-  z-index: -1;
-  transition: .5s;
-}
-.skills-box .skills-content:hover::before { 
-  width: 100%;
-
-}
-.skills-content .progress {
-  padding: 1rem 0;
-}
-
-.skills-content .progress h3 {
-  font-size: 2.3rem;
-  display: flex;
-  justify-content: space-between;
-}
-.skills-content .progress h3 span {
-  color: var(--text-color);
-}
-.skills-content .progress .bar {
-  height: 2.5rem;
-  border-radius: .6rem;
-  border: .2rem solid var(--main-color);
-  padding: .5rem;
-  margin: 1rem 0;
-}
-
-.skills-content .progress .bar span{
-  display: block;
-  height: 100%;
-  border-radius: .3rem;
-  background: var(--main-color);
-}
-.skills-column:nth-child(1) .skills-content .progress:nth-child(1) .bar span {
-  width: 90%;
-} 
-.skills-column:nth-child(1) .skills-content .progress:nth-child(2) .bar span {
-  width: 90%;
-} 
-.skills-column:nth-child(1) .skills-content .progress:nth-child(3) .bar span {
-  width: 90%;
-} 
-.skills-column:nth-child(2) .skills-content .progress:nth-child(1) .bar span {
-  width: 90%;
-} 
-.skills-column:nth-child(2) .skills-content .progress:nth-child(2) .bar span {
-  width: 90%;
-} 
-.skills-column:nth-child(2) .skills-content .progress:nth-child(3) .bar span {
-  width: 90%;
-} 
-
 .contact {
   min-height: auto;
   padding-bottom: 7rem;
 }
-
 .contact h2 {
   display: inline-block;
   left: 50%;
@@ -732,7 +636,7 @@ span {
   height: 100%;
   background: var(--second-bg-color);
   border-radius: .6rem;
-  z-index: 1;
+  z-index: -1;
   transition: .5s; 
 }
 
@@ -841,9 +745,7 @@ span {
 }
 
 .home-imgHover:hover {
-  background-color: var(--bg-color); 
-  opacity: .8;
-  animation: enlarge 0.8s ease forwards;
+  animation: blink 2s infinite;
 }
 
 
@@ -854,8 +756,6 @@ span {
 .home-imgHover.show-img.home-imgHover.show-img:hover {
   background: rgba(0,0,0,.5);
 }
-
-
 
 .logo .animate,
 .navbar .animate,
@@ -876,6 +776,123 @@ section:nth-child(odd) .animate.scroll,
 }
 .education .education-box .animate.scroll{
   width: 105%;
+}
+
+.skills {  
+  padding-bottom: 7rem;
+  background: var(--second-bg-color);
+  transition: background-color 1s ease-in-out; 
+}
+
+.skills h2 {
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.skills .skills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem;
+}
+
+.skills-row .skills-column {
+  flex: 1 1 40rem;
+}
+
+.skills-column .title {
+  position: relative;
+  display: inline-block;
+  font-size: 2.5rem;
+  margin: 0 0 1.5rem;
+} 
+
+.skills-column .skills-box {
+  position: relative;
+} 
+
+.skills-box .skills-content {
+  position: relative;
+  border: .2rem solid var(--main-color);
+  border-radius: .6rem;
+  padding: .5rem 1.5rem;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.skills-box .skills-content::before { 
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--bg-color);
+  z-index: -1;
+  transition: .5s;
+}
+
+.skills-box .skills-content:hover::before {
+  width: 100%;
+}
+
+.skills-content .progress {
+  padding: 1rem 0;
+}
+
+.skills-content .progress h3 {
+  font-size: 2.3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.skills-content .progress h3 span {
+  color: var(--text-color);
+}
+
+.skills-content .progress .bar {
+  height: 2.5rem;
+  border-radius: .6rem;
+  border: .2rem solid var(--main-color);
+  padding: .5rem;
+  margin: 1rem 0;
+}
+
+.skills-content .progress .bar span{
+  display: block;
+  height: 100%;
+  border-radius: .3rem;
+  background: var(--main-color);
+}
+
+.skills-column:nth-child(1) .skills-content .progress:nth-child(1) .bar span {
+  width: 90%;
+} 
+
+.skills-column:nth-child(1) .skills-content .progress:nth-child(2) .bar span {
+  width: 90%;
+} 
+
+.skills-column:nth-child(1) .skills-content .progress:nth-child(3) .bar span {
+  width: 90%;
+} 
+
+.skills-column:nth-child(2) .skills-content .progress:nth-child(1) .bar span {
+  width: 90%;
+} 
+
+.skills-column:nth-child(2) .skills-content .progress:nth-child(2) .bar span {
+  width: 90%;
+} 
+
+.skills-column:nth-child(2) .skills-content .progress:nth-child(3) .bar span {
+  width: 90%;
+} 
+
+/* Hover effect */
+.skills-box .skills-content:hover {
+  background-color: var(--second-bg-color); 
+  transition: background-color 0.5s ease;
 }
 
 .about.show-animate .animate.scroll,
@@ -924,7 +941,7 @@ section:nth-child(odd) .animate.scroll,
     padding: 1rem 4%;
     background: var(--bg-color);
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
-    z-index: 1;
+    z-index: 2;
     transition: .25s ease;
     transition-delay: .25s;
   }
@@ -1057,21 +1074,16 @@ section:nth-child(odd) .animate.scroll,
     }
 
 }
-@keyframes enlarge {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
-
 
 /* Keyframes animation for showing the popup */
 @keyframes showPopup {
   0% {
     opacity: 0;
-    transform: scale(0);
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
   }
   100% {
     opacity: 1;
@@ -1079,20 +1091,16 @@ section:nth-child(odd) .animate.scroll,
   }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
+
+/* Define keyframes for blinking animation */
+@keyframes blink {
+  0% {
     opacity: 1;
   }
-}
-
-@keyframes slideOut {
-  from {
-    transform: translateY(0);
+  50% {
+    opacity: 0.5;
   }
-  to {
-    transform: translateY(-100%);
+  100% {
+    opacity: 1;
   }
 }
