@@ -63,8 +63,8 @@
   </div>
 </section>
 
-  <!-- About -->
-  <section class="about" id="about">
+<!-- About -->
+<section class="about" id="about">
     <h2 class="heading">About <span>Me</span><span class="animate scroll" style="--i:1;"></span></h2>
   
     <div class="about-img">
@@ -94,10 +94,10 @@
         <span class="animate scroll" style="--i:5;"></span>
       </div>
     </div>
-  </section>
+</section>
 
- <!-- My Jorney -->
-  <section class="education" id="education">
+<!-- My Jorney -->
+<section class="education" id="education">
     <h2 class="heading">My <span>Journey</span><span class="animate scroll" style="--i:1;"></span></h2>
     <div class="education-row">
       <div class="education-column">
@@ -157,10 +157,10 @@
         </div>
       </div>
     </div>
-  </section>
+</section>
 
-  <!-- Skills  -->
-  <section class="skills" id="skills">
+<!-- Skills  -->
+<section class="skills" id="skills">
     <h2 class="heading">My <span>Skills</span><span class="animate scroll" style="--i:1;"></span></h2>
   
     <div class="skills-row">
@@ -214,12 +214,13 @@
         </div>
       </div>
     </div>
-  </section>
+</section>
   
 <!-- Contact -->
 <section class="contact" id="contact">
   <h2 class="heading">Contact <span>Me!</span><span class="animate scroll" style="--i:1;"></span></h2>
-  <form action="#" class="contact-form">
+  <form id="suggestionForm" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="0a9b00f2-b08d-42b0-9d61-2d77f42bd297">
     <div class="input-box">
       <div class="input-field">
         <input type="text" name="full_name" placeholder="Full Name" required>
@@ -272,8 +273,8 @@
   </div>
 </footer>
 
-    <!-- Popup for Suggestions -->
-    <div class="popup" id="suggestionPopup">
+<!-- Popup for Suggestions -->
+  <div class="popup" id="suggestionPopup">
       <div class="popup-content">
         <span class="close" id="closeBtn">&times;</span>
         <h2>Give your suggestions<span class="animate scroll" style="--i:1;"></span></h2>
@@ -286,17 +287,17 @@
           </div>
         </form>        
       </div>
-    </div>
+  </div>
 
-    <!-- Thank You Message -->
-    <div class="thank-you" id="thankYouSection" style="display: none;">
+<!-- Thank You Message -->
+  <div class="thank-you" id="thankYouSection" style="display: none;">
       <div class="thank-you-box">
         <div class="thank-you-content">
           <h2>Thank you! <span class="animate scroll" style="--i:1;"></span></h2>
           <p>Suggestion has been successfully submitted.<span class="animate scroll" style="--i:2;"></span></p>
         </div>
       </div>
-    </div>
+  </div>
 
   <script src="folder/main/script.js"></script>
   <!-- <script src="folder/main/script copy.js"></script> -->

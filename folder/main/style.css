@@ -583,6 +583,9 @@ span {
   padding-top: .5rem;
 }
 
+.contact {
+  padding-top: 110px;
+}
 .contact h2 {
   display: inline-block;
   left: 50%;
@@ -671,7 +674,6 @@ span {
   flex-wrap: wrap;
   transition: background-color 0.5s ease; 
 }
-
 
 .footer-text,
 .footer-iconTop {
