@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Event listener for the button click
-  suggestionBtn.addEventListener("click", openPopup);
+  //suggestionBtn.addEventListener("click", openPopup);
 
   // Event listener for the close button click
   document.getElementById("closeBtn").addEventListener("click", closePopup);
