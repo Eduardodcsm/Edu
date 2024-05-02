@@ -5,8 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('section');
   const navLinks = document.querySelectorAll('header nav a');
   const footer = document.querySelector('footer');
-  const footerTop = footer.offsetTop; // Potential issue if footer is null
-  const footerHeight = footer.offsetHeight; // Potential issue if footer is null
+  let footerTop, footerHeight;
+  if (footer) {
+    footerTop = footer.offsetTop; // Move inside if statement
+    footerHeight = footer.offsetHeight; // Move inside if statement
+  }
   const header = document.querySelector('header');
   const suggestionPopup = document.getElementById("suggestionPopup");
   const readMoreBtn = document.getElementById("readMoreBtn");
@@ -27,11 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Toggle menu icon and navbar
-  menuIcon.addEventListener('click', () => {
-    menuIcon.classList.toggle('bx-x');
-    navbar.classList.toggle('active');
-    homeSci.classList.toggle('active');
-  });
+  if(menuIcon){
+    menuIcon.addEventListener('click', () => {
+      menuIcon.classList.toggle('bx-x');
+      navbar.classList.toggle('active');
+      homeSci.classList.toggle('active');
+    });
+  }
 
   // Smooth scrolling for navigation links
   navLinks.forEach(link => {
@@ -71,21 +76,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Toggle 'show-animate' class for the footer
     const scrollPosition = window.scrollY + window.innerHeight;
-    footer.classList.toggle('show-animate', scrollPosition >= footerTop + footerHeight);
+    if (footer) {
+      footer.classList.toggle('show-animate', scrollPosition >= footerTop + footerHeight);
+    }
   });
 
   // Read more/less button functionality
-  readMoreBtn.addEventListener("click", function() {
-    if (shortDescription.style.display === "none") {
-      shortDescription.style.display = "block";
-      longDescription.style.display = "none";
-      readMoreBtn.innerText = "Read more";
-    } else {
-      shortDescription.style.display = "none";
-      longDescription.style.display = "block";
-      readMoreBtn.innerText = "Read less";
-    }
-  });
+  if(readMoreBtn){
+    readMoreBtn.addEventListener("click", function() {
+      if (shortDescription.style.display === "none") {
+        shortDescription.style.display = "block";
+        longDescription.style.display = "none";
+        readMoreBtn.innerText = "Read more";
+      } else {
+        shortDescription.style.display = "none";
+        longDescription.style.display = "block";
+        readMoreBtn.innerText = "Read less";
+      }
+    });
+  }
 
   // Handling click event for the "Other Projects" link
   if (otherProjectsLink) {
@@ -105,41 +114,43 @@ document.addEventListener('DOMContentLoaded', () => {
     suggestionPopup.style.display = "none";
   }
 
-  // Event listener for the button click
-  //suggestionBtn.addEventListener("click", openPopup);
-
   // Event listener for the close button click
-  document.getElementById("closeBtn").addEventListener("click", closePopup);
+  const closeBtn = document.getElementById("closeBtn");
+  if(closeBtn){
+    closeBtn.addEventListener("click", closePopup);
+  }
 
   // Event listener for submitting the form (you can handle this part according to your backend)
-  suggestionForm.addEventListener("submit", async (event) => {
-    event.preventDefault(); // Prevent default form submission
-    const formData = new FormData(suggestionForm);
+  if (suggestionForm) {
+    suggestionForm.addEventListener("submit", async (event) => {
+      event.preventDefault(); // Prevent default form submission
+      const formData = new FormData(suggestionForm);
 
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData
-      });
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData
+        });
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        console.log("Form submission successful:", data);
+        closePopup(); // Close the popup after successful submission
+        // Display a thank you message
+        thankYouSection.style.display = 'block';
+        thankYouSection.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          thankYouSection.style.display = 'none';
+        }, 3000); // Adjust the time (in milliseconds) as needed
+      } catch (error) {
+        console.error("There was an error with form submission:", error);
+        // Optionally, you can display an error message to the user
       }
-
-      const data = await response.json();
-      console.log("Form submission successful:", data);
-      closePopup(); // Close the popup after successful submission
-      // Display a thank you message
-      thankYouSection.style.display = 'block';
-      thankYouSection.scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => {
-        thankYouSection.style.display = 'none';
-      }, 3000); // Adjust the time (in milliseconds) as needed
-    } catch (error) {
-      console.error("There was an error with form submission:", error);
-      // Optionally, you can display an error message to the user
-    }
-  });
+    });
+  }
 });
 
 function changePlaceholder() {

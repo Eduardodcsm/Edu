@@ -1,59 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Eduardo's Projects Page">
-  <meta name="author" content="Eduardo">
-  <title>Eduardo's Projects</title>
+  <!-- Title -->
+  <title>Eduardo's Personal Website</title>
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="page.css">
 </head>
 <body>
-  <!-- https://validator.w3.org/ -->
-<header id="header">
-  <div class="header-content">
-    <h1>This Page is Under Construction</h1>
-  </div>
-  <nav class="navbar">
-    <a href="../../index.html">Index</a>
-  </nav>
-</header>
-<div class="btn-box">
-  <a href="#contact" class="btn">Hire Me</a>
-  <a href="#" class="btn" id="suggestionBtn">Suggestions</a>
-  <span class="animate" style="--i:6;"></span>
-</div>
-
-<!-- Popup for Suggestions -->
-<div class="popup" id="suggestionPopup">
-  <div class="popup-content">
-    <span class="close" id="closeBtn">&times;</span>
-    <h2>Give your suggestions<span class="animate scroll" style="--i:1;"></span></h2>
-    <form id="suggestionForm" action="https://api.web3forms.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="0a9b00f2-b08d-42b0-9d61-2d77f42bd297">
-      <textarea id="suggestionText" name="suggestion" placeholder="Type your suggestion here..."></textarea>
-      <div class="btn-box btns">
-        <button type="submit" class="btn">Submit</button>
-        <span class="animate scroll" style="--i:3;"></span>
-      </div>
-    </form>
-    <!-- Thank You Message -->
-    <div id="thankYouMessage" style="display: none;">
-      Thank you for your suggestion!
-    </div>
-  </div>
-</div>
-
-
-</div>
-</div>
-
-<footer id="footer">
-  <div class="container">
-    <p>&copy; 2024 Eduardo</p>
-  </div>
-</footer>
-
-<script src="page.js"></script>
+  <header class="header">
+    <h1><a href="../../index.html" class="logo">Portfolio Index</a></h1> 
+    <div class="bx bx-menu" id="menu-icon"></div>
+  
+    <nav class="navbar">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+    <a href="folder/pages/page.html">Other Projects</a>
+    <span class="active-nav"></span>
+    <span class="animate" style="--i:2;"></span>
+    </nav>   
+  </header>
 </body>
 </html>
