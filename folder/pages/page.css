@@ -1,81 +1,98 @@
-* {
+/* General reset and base styles */
+body, h1, h2, div, form, label, input, button, a {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  text-decoration: none;
-  border: none;
-  outline: none;
-  scroll-behavior: smooth;
-  font-family: 'Poppins', sans-serif;  
 }
 
-:root {
-  --bg-color: #081b29;
-  --second-bg-color: #112e42;
-  --text-color: #ededed;
-  --main-color: #00abf0;
-}
-
-/* HTML styles */
-html {
-  font-size: 62.5%;
-  overflow-x: hidden;
-}
-/* Body styles */
 body {
-  background: var(--bg-color);
-  color: var(--text-color);
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
 }
+
 /* Header styles */
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 2rem 9%;
-  background: transparent;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1;
-  transition: .3s;
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
 }
 
-.header.sticky {
-  background: var(--bg-color)
+.header .logo {
+  color: #fff;
+  text-decoration: none;
 }
 
-/* Logo */
-.logo {
-  position: relative;
-  font-size: 3rem;
-  color: var(--text-color);
-  font-weight: 600;
+.header .login-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: #fff;
+  text-decoration: none;
+  background-color: #555;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
 }
 
 /* Navigation styles */
 .navbar {
-  position: relative;
-  z-index: 2;
+  margin-top: 1rem;
 }
+
 .navbar a {
-  font-size: 2rem;
-  color: var(--text-color);
-  font-weight: 500;
-  margin-left: 3.5rem;
-  transition:  .3s;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
 }
 
-/* Hover effect on navigation links */
-.navbar a:hover,
 .navbar a.active {
-  color: var(--main-color);
+  border-bottom: 2px solid #fff;
 }
 
-#menu-icon {
-  position: relative;
-  font-size: 3.6rem;
-  color: var(--text-color);
+/* Login form styles */
+.login-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#login-form h2 {
+  margin-bottom: 1rem;
+}
+
+#login-form div {
+  margin-bottom: 1rem;
+}
+
+#login-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+#login-form input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#login-form button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  background-color: #333;
+  color: #fff;
   cursor: pointer;
+  border-radius: 5px;
+}
+
+#login-form button:hover {
+  background-color: #555;
+}
+.hidden {
   display: none;
 }
