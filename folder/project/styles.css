@@ -1,0 +1,24 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4; /* Example background color */
+    color: #333; /* Example text color */
+}
+
+h1 {
+    color: #007bff; /* Example heading color */
+}
+
+p {
+    line-height: 1.6;
+}
+
+ul {
+    list-style-type: disc; /* Bulleted list */
+    padding-left: 20px;
+}
+
+ol {
+    list-style-type: decimal; /* Numbered list */
+    padding-left: 20px;
+}
