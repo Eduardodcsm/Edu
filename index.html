@@ -1,42 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="The Walking Dead Survival Nexus – A fan hub for games, shows, and comics." />
-  <title>The Walking Dead: Survival Nexus</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <script defer src="assets/js/main.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Freedom Path - Home</title>
+    
+    <!-- Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark-theme">
-  <header>
-    <h1>The Walking Dead: <span>Survival Nexus</span></h1>
-    <nav>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="about.html">Lore</a></li>
-        <li><a href="missions.html">Missions</a></li>
-<li><a href="factions.html">Factions</a></li>
-        <li><a href="characters.html">Characters</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <button id="darkToggle" title="Toggle dark mode">🌓</button>
-    </nav>
-  </header>
+<body class="bg-gray-50 text-gray-800">
 
-  <section class="hero">
-    <h2>"Fight the dead. Fear the living."</h2>
-    <p>Welcome survivor. The world has ended – but your journey begins here.</p>
-    <a href="missions.html" class="cta-button">Start Your Mission</a>
-  </section>
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-teal-600">
+                FinFreedom
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="text-teal-600 font-semibold border-b-2 border-teal-600 pb-1">Home</a>
+                <a href="budgeting.html" class="text-gray-600 hover:text-teal-600 transition duration-300">Budgeting</a>
+                <a href="investing.html" class="text-gray-600 hover:text-teal-600 transition duration-300">Investing</a>
+                <a href="mindset.html" class="text-gray-600 hover:text-teal-600 transition duration-300">Mindset</a>
+            </div>
 
-  <section class="intro">
-    <h3>Explore the Universe</h3>
-    <p>Discover storylines, iconic characters, and test your survival instincts. From the comics to the console, everything Walking Dead lives here.</p>
-  </section>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html" class="block py-2 px-6 text-sm text-teal-600 bg-gray-100">Home</a>
+            <a href="budgeting.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Budgeting</a>
+            <a href="investing.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Investing</a>
+            <a href="mindset.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Mindset</a>
+        </div>
+    </header>
 
-  <footer>
-    <p>&copy; 2025 The Walking Dead: Survival Nexus. Fan project only.</p>
-  </footer>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-bg text-white">
+            <div class="container mx-auto px-6 py-24 md:py-32 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Chart Your Path to Financial Freedom</h1>
+                <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">It's not about being rich. It's about having the freedom to choose your life's direction. Let's start the journey.</p>
+                <a href="budgeting.html" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 text-lg">
+                    Start with a Budget
+                </a>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">What is Financial Independence?</h2>
+                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">It's the point where you have enough income to pay your living expenses for the rest of your life without having to be employed or dependent on others.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                        <img src="https://images.pexels.com/photos/4386341/pexels-photo-4386341.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Imagem de um cofrinho com moedas" class="w-full h-40 object-cover rounded-lg mb-6" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/4a5568?text=Image';">
+                        <h3 class="font-bold text-xl mb-3 text-teal-700">Control Your Money</h3>
+                        <p class="text-gray-600">The first step is understanding where your money goes. A solid budget is the foundation of your financial house.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                        <img src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Imagem de gráficos de crescimento" class="w-full h-40 object-cover rounded-lg mb-6" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/4a5568?text=Image';">
+                        <h3 class="font-bold text-xl mb-3 text-teal-700">Grow Your Wealth</h3>
+                        <p class="text-gray-600">Make your money work for you. Learn the basics of investing to build wealth and beat inflation over the long term.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                        <img src="https://images.pexels.com/photos/313690/pexels-photo-313690.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Imagem de uma pessoa olhando para o horizonte" class="w-full h-40 object-cover rounded-lg mb-6" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/4a5568?text=Image';">
+                        <h3 class="font-bold text-xl mb-3 text-teal-700">Achieve Your Goals</h3>
+                        <p class="text-gray-600">Financial freedom allows you to pursue your passions, spend time with loved ones, and live life on your own terms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="py-16 md:py-24 bg-teal-600 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold">Ready to Change Your Future?</h2>
+                <p class="mt-4 mb-8 max-w-xl mx-auto">The best time to start was yesterday. The second best time is now.</p>
+                <a href="investing.html" class="bg-white hover:bg-gray-200 text-teal-600 font-bold py-3 px-8 rounded-full transition duration-300 text-lg">
+                    Learn About Investing
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">&copy; 2024 FinFreedom. All Rights Reserved.</p>
+                <div class="mt-4 md:mt-0">
+                     <p class="text-sm text-gray-500">Created with Gemini & GitHub</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="main.js" defer></script>
 </body>
 </html>

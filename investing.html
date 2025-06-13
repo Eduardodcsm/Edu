@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Freedom Path - Investing</title>
+    
+    <!-- Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-teal-600">
+                FinFreedom
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="text-gray-600 hover:text-teal-600 transition duration-300">Home</a>
+                <a href="budgeting.html" class="text-gray-600 hover:text-teal-600 transition duration-300">Budgeting</a>
+                <a href="investing.html" class="text-teal-600 font-semibold border-b-2 border-teal-600 pb-1">Investing</a>
+                <a href="mindset.html" class="text-gray-600 hover:text-teal-600 transition duration-300">Mindset</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Home</a>
+            <a href="budgeting.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Budgeting</a>
+            <a href="investing.html" class="block py-2 px-6 text-sm text-teal-600 bg-gray-100">Investing</a>
+            <a href="mindset.html" class="block py-2 px-6 text-sm text-gray-600 hover:bg-gray-100">Mindset</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="investing-hero-bg text-white">
+            <div class="container mx-auto px-6 py-24 md:py-32 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Make Your Money Work for You</h1>
+                <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">Investing is the engine of wealth creation. Understand the principles to build a secure future and achieve your financial goals.</p>
+            </div>
+        </section>
+
+        <!-- Rotating Message Section -->
+        <section class="bg-gray-800 text-white py-6">
+            <div id="message-container" class="container mx-auto px-6 text-center">
+                <p id="rotating-message-text" class="text-lg italic text-gray-300"></p>
+            </div>
+        </section>
+
+        <!-- Investment Paths Section -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Common Paths to Building Wealth</h2>
+                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Financial independence is built on proven strategies. Here are some of the most common and effective ways people invest for the future.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Path 1: Stock Market -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg">
+                        <img src="https://images.pexels.com/photos/210607/pexels-photo-210607.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Stock market charts on a screen" class="w-full h-56 object-cover rounded-lg mb-6">
+                        <h3 class="font-bold text-2xl mb-3 text-teal-700">The Stock Market</h3>
+                        <p class="text-gray-600 mb-4">For most people, this is the most accessible way to build wealth. It's about owning a piece of successful companies and benefiting from their growth.</p>
+                        <h4 class="font-semibold text-lg text-gray-700 mb-2">Key Strategies:</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li><strong>Index Funds & ETFs:</strong> Instead of picking individual stocks, you buy a basket that tracks a whole market (like the S&P 500). It's diversified and low-cost.</li>
+                            <li><strong>Long-Term Holding:</strong> The market goes up and down, but historically, it trends up. The key is to stay invested for years, not days.</li>
+                            <li><strong>Compound Interest:</strong> Reinvesting your earnings allows your money to grow exponentially over time. It's the most powerful force in finance.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Path 2: Real Estate -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg">
+                        <img src="https://images.pexels.com/photos/101808/pexels-photo-101808.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A set of house keys on a wooden table" class="w-full h-56 object-cover rounded-lg mb-6">
+                        <h3 class="font-bold text-2xl mb-3 text-teal-700">Real Estate</h3>
+                        <p class="text-gray-600 mb-4">Owning physical property is another classic path. It can provide both regular income and long-term appreciation.</p>
+                        <h4 class="font-semibold text-lg text-gray-700 mb-2">Key Strategies:</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li><strong>Rental Properties:</strong> Buying a property to rent out can create a steady stream of passive income that helps pay the mortgage and build equity.</li>
+                            <li><strong>Fix and Flip:</strong> Buying undervalued homes, renovating them, and selling for a profit. This is more active and requires market knowledge.</li>
+                            <li><strong>REITs (Real Estate Investment Trusts):</strong> A way to invest in real estate without buying physical property. You buy shares in companies that own properties.</li>
+                        </ul>
+    
+                    </div>
+
+                    <!-- Path 3: Increase Your Income -->
+                     <div class="bg-gray-50 p-8 rounded-xl shadow-lg">
+                        <img src="https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Person working on a laptop with a side hustle idea" class="w-full h-56 object-cover rounded-lg mb-6">
+                        <h3 class="font-bold text-2xl mb-3 text-teal-700">Increasing Your Income</h3>
+                        <p class="text-gray-600 mb-4">Your ability to earn is your biggest asset. Creating more income allows you to save and invest more aggressively.</p>
+                        <h4 class="font-semibold text-lg text-gray-700 mb-2">Key Strategies:</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li><strong>Career Growth:</strong> Focus on acquiring valuable skills to get promotions and raises in your primary job.</li>
+                            <li><strong>Side Hustles:</strong> Use your free time to build a second income stream, from freelancing and consulting to starting a small online business.</li>
+                            <li><strong>Create and Sell:</strong> Develop a product, write an e-book, or create an online course. This creates scalable, passive income over time.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Path 4: Invest in Yourself -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg">
+                        <img src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Person reading a book and learning" class="w-full h-56 object-cover rounded-lg mb-6">
+                        <h3 class="font-bold text-2xl mb-3 text-teal-700">Investing In Yourself</h3>
+                        <p class="text-gray-600 mb-4">The best returns often come from improving your own knowledge and skills. This is the foundation for all other investments.</p>
+                         <h4 class="font-semibold text-lg text-gray-700 mb-2">Key Strategies:</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li><strong>Education:</strong> Never stop learning. Read books, take courses, and attend seminars on finance, business, and personal development.</li>
+                            <li><strong>Health & Wellness:</strong> Your health is your wealth. Proper diet, exercise, and mental health care are essential for long-term success and happiness.</li>
+                            <li><strong>Build Your Network:</strong> Connect with like-minded, ambitious people. Your network can provide opportunities and support you won't find alone.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">&copy; 2024 FinFreedom. All Rights Reserved.</p>
+                <div class="mt-4 md:mt-0">
+                     <p class="text-sm text-gray-500">Created with Gemini & GitHub</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="main.js" defer></script>
+</body>
+</html>

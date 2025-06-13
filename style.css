@@ -1,126 +1,103 @@
-/* ------------------------------
-   Global Styles
------------------------------- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* ==============================================
+style.css
+This file contains all the custom styles for the FinFreedom website.
+==============================================
+*/
 
-html {
-  scroll-behavior: smooth;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
+/* General Body Styles */
 body {
-  background-color: #111;
-  color: #f1f1f1;
-  line-height: 1.6;
-  padding: 0 1rem;
+    font-family: 'Inter', sans-serif;
 }
 
-a {
-  color: #e74c3c;
-  text-decoration: none;
+/* Hero Section Backgrounds */
+.hero-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    background-size: cover;
+    background-position: center;
 }
 
-a:hover {
-  text-decoration: underline;
+.investing-hero-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    background-size: cover;
+    background-position: center;
 }
 
-header {
-  padding: 1.5rem 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  border-bottom: 1px solid #333;
+.budgeting-hero-bg {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.pexels.com/photos/5848455/pexels-photo-5848455.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    background-size: cover;
+    background-position: center;
 }
 
-header h1 {
-  font-size: 1.8rem;
+
+/* Rotating Message Animation */
+#rotating-message-text {
+    /* Set a fixed height to prevent layout shifts when text changes */
+    min-height: 54px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease-in-out;
 }
 
-header h1 span {
-  color: #e74c3c;
+/* ==============================================
+Quiz Styles
+==============================================
+*/
+.quiz-question {
+    margin-bottom: 2rem;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
+.quiz-options label {
+    display: block;
+    background-color: #f7fafc; /* gray-100 */
+    border: 1px solid #e2e8f0; /* gray-300 */
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
-nav a.active {
-  font-weight: bold;
-  border-bottom: 2px solid #e74c3c;
+.quiz-options label:hover {
+    background-color: #ebf8ff; /* teal-100 */
+    border-color: #4fd1c5; /* teal-400 */
 }
 
-.hero {
-  text-align: center;
-  padding: 4rem 1rem;
-  background: url('../images/hero-bg.jpg') center/cover no-repeat;
-  background-blend-mode: multiply;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
+.quiz-options input[type="radio"]:checked + label {
+    background-color: #e6fffa; /* teal-200 */
+    border-color: #38b2ac; /* teal-500 */
+    font-weight: 600;
 }
 
-.hero h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+.quiz-options input[type="radio"] {
+    display: none;
 }
 
-.hero .cta-button {
-  display: inline-block;
-  padding: 1rem 2rem;
-  background-color: #e74c3c;
-  color: #fff;
-  border-radius: 5px;
-  font-weight: bold;
-  margin-top: 1rem;
-  transition: 0.3s ease;
-}
-
-.hero .cta-button:hover {
-  background-color: #c0392b;
-}
-
-.intro {
-  padding: 2rem 0;
-  max-width: 700px;
-  margin: auto;
-  text-align: center;
-}
-
-footer {
-  margin-top: 4rem;
-  padding: 1rem;
-  border-top: 1px solid #333;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-/* Dark/Light Theme Toggle */
-#darkToggle {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: #f1f1f1;
-  cursor: pointer;
-}
-
-/* Responsive */
-@media screen and (max-width: 600px) {
-  nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .hero h2 {
-    font-size: 1.4rem;
-  }
-
-  .hero .cta-button {
+#submit-quiz-btn {
+    display: block;
     width: 100%;
-  }
+    background-color: #38b2ac; /* teal-500 */
+    color: white;
+    font-weight: bold;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
 }
+
+#submit-quiz-btn:hover {
+    background-color: #319795; /* teal-600 */
+}
+
+.result-good {
+    background-color: #c6f6d5; /* green-200 */
+    border-left: 4px solid #48bb78; /* green-500 */
+}
+.result-average {
+    background-color: #feebc8; /* yellow-200 */
+    border-left: 4px solid #ed8936; /* yellow-500 */
+}
+.result-improve {
+    background-color: #fed7d7; /* red-200 */
+    border-left: 4px solid #f56565; /* red-500 */
+}
+
