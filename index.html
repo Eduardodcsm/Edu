@@ -1,94 +1,41 @@
 <!DOCTYPE html>
-<!-- This declaration defines the document to be HTML5 -->
 <html lang="en">
-<!-- The <html> element is the root element of an HTML page -->
-
 <head>
-    <!-- The <head> element contains meta-information about the HTML page -->
-    <meta charset="UTF-8">
-    <!-- Specifies the character encoding for the document -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- This makes the webpage responsive to different screen sizes -->
-    <title>My First HTML Page</title>
-    <!-- The <title> element specifies a title for the HTML page, which is shown in the browser's title bar or in the page's tab -->
-
-    <!-- Load Tailwind CSS for some simple styling to make it look nice -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-      }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Walking Dead Survival Nexus – A fan hub for games, shows, and comics." />
+  <title>The Walking Dead: Survival Nexus</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script defer src="assets/js/main.js"></script>
 </head>
+<body class="dark-theme">
+  <header>
+    <h1>The Walking Dead: <span>Survival Nexus</span></h1>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">Lore</a></li>
+        <li><a href="missions.html">Missions</a></li>
+        <li><a href="characters.html">Characters</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button id="darkToggle" title="Toggle dark mode">🌓</button>
+    </nav>
+  </header>
 
-<body class="bg-gray-100 text-gray-800">
-    <!-- The <body> element defines the document's body, and is a container for all the visible contents -->
+  <section class="hero">
+    <h2>"Fight the dead. Fear the living."</h2>
+    <p>Welcome survivor. The world has ended – but your journey begins here.</p>
+    <a href="missions.html" class="cta-button">Start Your Mission</a>
+  </section>
 
-    <div class="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-md mt-10">
+  <section class="intro">
+    <h3>Explore the Universe</h3>
+    <p>Discover storylines, iconic characters, and test your survival instincts. From the comics to the console, everything Walking Dead lives here.</p>
+  </section>
 
-        <!-- 1. Headings: Used to structure your content -->
-        <h1 class="text-4xl font-bold text-blue-600 mb-4">This is a Main Heading (h1)</h1>
-        <p class="mb-6">Headings are important for search engines and for organizing your content for readers. There are 6 levels, from `<h1>` (most important) to `<h6>` (least important).</p>
-        <h2 class="text-2xl font-semibold text-gray-700 mb-3">This is a Sub-heading (h2)</h2>
-        <h3 class="text-xl font-medium text-gray-600 mb-3">This is an h3</h3>
-        <p class="mb-6">And so on...</p>
-
-        <!-- A dividing line to separate sections -->
-        <hr class="my-8">
-
-        <!-- 2. Paragraphs: For writing your main text content -->
-        <h2 class="text-2xl font-semibold text-gray-700 mb-3">Paragraphs and Text Formatting</h2>
-        <p class="mb-4">
-            The `<p>` tag is used for paragraphs. You can write as much as you want inside a paragraph tag. This is some sample text to show how a paragraph looks. You can also make text <strong>bold</strong>, <em>italic</em>, or <mark>highlighted</mark>.
-        </p>
-
-        <!-- A dividing line to separate sections -->
-        <hr class="my-8">
-
-        <!-- 3. Lists: For creating ordered or unordered lists -->
-        <h2 class="text-2xl font-semibold text-gray-700 mb-3">Making Lists</h2>
-        <p class="mb-4">This is an unordered (bulleted) list using `<ul>`:</p>
-        <ul class="list-disc list-inside mb-6 pl-4 space-y-2">
-            <li>First item</li>
-            <li>Second item</li>
-            <li>Third item</li>
-        </ul>
-
-        <p class="mb-4">This is an ordered (numbered) list using `<ol>`:</p>
-        <ol class="list-decimal list-inside pl-4 space-y-2">
-            <li>First item</li>
-            <li>Second item</li>
-            <li>Third item</li>
-        </ol>
-
-        <!-- A dividing line to separate sections -->
-        <hr class="my-8">
-
-        <!-- 4. Links: To link to other pages or websites -->
-        <h2 class="text-2xl font-semibold text-gray-700 mb-3">Creating Links</h2>
-        <p class="mb-4">
-            You can create a link to another website using the `<a>` tag (which stands for "anchor").
-        </p>
-        <a href="https://www.google.com" target="_blank" class="text-blue-500 hover:text-blue-700 hover:underline">
-            Click here to go to Google
-        </a>
-        <p class="text-sm text-gray-500 mt-2">(The `target="_blank"` attribute makes it open in a new tab.)</p>
-
-
-        <!-- A dividing line to separate sections -->
-        <hr class="my-8">
-
-        <!-- 5. Images: To display images on your page -->
-        <h2 class="text-2xl font-semibold text-gray-700 mb-3">Displaying an Image</h2>
-        <p class="mb-4">
-            Use the `<img>` tag to show an image. The `src` attribute is the path to the image, and the `alt` attribute is important for accessibility—it describes the image if it can't be seen.
-        </p>
-        <img src="https://placehold.co/600x300/3498db/ffffff?text=This+is+an+Image"
-             alt="A placeholder image with a blue background and white text"
-             class="rounded-lg shadow-md w-full max-w-lg mx-auto">
-    </div>
-
+  <footer>
+    <p>&copy; 2025 The Walking Dead: Survival Nexus. Fan project only.</p>
+  </footer>
 </body>
-
 </html>
