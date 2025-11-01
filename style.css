@@ -73,7 +73,7 @@ Quiz Styles
     display: none;
 }
 
-#submit-quiz-btn {
+#submit-quiz-btn, #submit-mindset-quiz-btn {
     display: block;
     width: 100%;
     background-color: #38b2ac; /* teal-500 */
@@ -84,7 +84,7 @@ Quiz Styles
     transition: background-color 0.3s;
 }
 
-#submit-quiz-btn:hover {
+#submit-quiz-btn:hover, #submit-mindset-quiz-btn:hover {
     background-color: #319795; /* teal-600 */
 }
 

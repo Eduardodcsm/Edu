@@ -4,6 +4,7 @@ This file contains all the JavaScript for the FinFreedom website.
 - Mobile Menu Toggle
 - Rotating Message Handler
 - Financial Health Quiz
+- Mindset Self-Assessment Quiz
 ==============================================
 */
 
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500);
         };
         changeMessage();
-        setInterval(changeMessage, 60000);
+        setInterval(changeMessage, 6000); // Changed from 60000ms to 6000ms
     }
 
     // --- Financial Health Quiz Handler ---
@@ -149,6 +150,112 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsContainer.innerHTML = resultHTML;
             resultsContainer.classList.remove('hidden');
             quizContainer.classList.add('hidden');
+        };
+    }
+
+    // --- Mindset Self-Assessment Quiz Handler ---
+    const mindsetQuizContainer = document.getElementById('mindset-quiz-container');
+    if (mindsetQuizContainer) {
+        const mindsetQuizQuestions = [
+            {
+                question: "When you think about money, you primarily feel:",
+                options: [
+                    { text: "Anxious and stressed, worried about not having enough.", score: 1 },
+                    { text: "Neutral, it's just a tool.", score: 2 },
+                    { text: "Hopeful and excited, focused on the opportunities it creates.", score: 3 }
+                ]
+            },
+            {
+                question: "You receive an unexpected $1,000 bonus. What's your first instinct?",
+                options: [
+                    { text: "Spend it on something you've been wanting.", score: 1 },
+                    { text: "Save it for a rainy day.", score: 2 },
+                    { text: "Invest it or use it to pay down debt.", score: 3 }
+                ]
+            },
+            {
+                question: "How often do you read books or listen to podcasts about finance and personal growth?",
+                options: [
+                    { text: "Rarely or never.", score: 1 },
+                    { text: "Occasionally, when something catches my eye.", score: 2 },
+                    { text: "Regularly, I actively seek out new knowledge.", score: 3 }
+                ]
+            },
+            {
+                question: "When you see a wealthy person, your first thought is often:",
+                options: [
+                    { text: "'They probably got lucky or had unfair advantages.'", score: 1 },
+                    { text: "'Good for them, but that's not achievable for me.'", score: 2 },
+                    { text: "'I wonder what I can learn from their journey.'", score: 3 }
+                ]
+            }
+        ];
+
+        let mindsetQuizHTML = '';
+        mindsetQuizQuestions.forEach((q, index) => {
+            mindsetQuizHTML += `<div class="quiz-question">`;
+            mindsetQuizHTML += `<p class="font-semibold text-lg mb-4">${index + 1}. ${q.question}</p>`;
+            mindsetQuizHTML += `<div class="quiz-options" data-question-index="${index}">`;
+            q.options.forEach((opt, optIndex) => {
+                mindsetQuizHTML += `
+                    <input type="radio" id="mq${index}_opt${optIndex}" name="mquestion${index}" value="${opt.score}">
+                    <label for="mq${index}_opt${optIndex}">${opt.text}</label>
+                `;
+            });
+            mindsetQuizHTML += `</div></div>`;
+        });
+        mindsetQuizHTML += `<button id="submit-mindset-quiz-btn">Reveal My Mindset</button>`;
+        mindsetQuizContainer.innerHTML = mindsetQuizHTML;
+
+        const submitMindsetButton = document.getElementById('submit-mindset-quiz-btn');
+        submitMindsetButton.addEventListener('click', () => {
+            let totalScore = 0;
+            let questionsAnswered = 0;
+            mindsetQuizQuestions.forEach((_, index) => {
+                const selectedOption = document.querySelector(`input[name="mquestion${index}"]:checked`);
+                if (selectedOption) {
+                    totalScore += parseInt(selectedOption.value);
+                    questionsAnswered++;
+                }
+            });
+
+            if (questionsAnswered < mindsetQuizQuestions.length) {
+                alert('Please answer all questions to see your results.');
+                return;
+            }
+
+            displayMindsetResults(totalScore);
+        });
+
+        const displayMindsetResults = (score) => {
+            const resultsContainer = document.getElementById('mindset-quiz-results');
+            let resultHTML = '';
+
+            if (score >= 10) { // Abundance Mindset
+                resultHTML = `
+                    <div class="result-good p-6 rounded-lg">
+                        <h3 class="font-bold text-2xl mb-2 text-green-800">Abundance Mindset!</h3>
+                        <p class="text-green-700">You see the world as full of opportunities. You believe in your ability to grow, learn, and create wealth. You focus on possibilities, not limitations. Keep cultivating this mindset, as it's the fertile ground for financial success.</p>
+                    </div>
+                `;
+            } else if (score >= 6) { // Mixed Mindset
+                resultHTML = `
+                    <div class="result-average p-6 rounded-lg">
+                        <h3 class="font-bold text-2xl mb-2 text-yellow-800">A Mix of Scarcity and Abundance.</h3>
+                        <p class="text-yellow-700">You have moments of both scarcity and abundance thinking. While you see potential, you're sometimes held back by fear or limiting beliefs. Your goal is to consciously challenge your scarcity thoughts and choose the abundance perspective more often.</p>
+                    </div>
+                `;
+            } else { // Scarcity Mindset
+                resultHTML = `
+                    <div class="result-improve p-6 rounded-lg">
+                        <h3 class="font-bold text-2xl mb-2 text-red-800">Primarily a Scarcity Mindset.</h3>
+                        <p class="text-red-700">Your thoughts about money are likely dominated by fear, anxiety, and a belief in limitation. This mindset can sabotage your financial progress. The first step is awareness. Recognize these thoughts and begin to challenge them. Focus on gratitude and small, positive financial actions.</p>
+                    </div>
+                `;
+            }
+            resultsContainer.innerHTML = resultHTML;
+            resultsContainer.classList.remove('hidden');
+            mindsetQuizContainer.classList.add('hidden');
         };
     }
 });

@@ -1,19 +1,19 @@
+# FinFreedom - Your Path to Financial Independence
 
-site to the form:
-https://web3forms.com/
+This is a simple, educational website designed to introduce the core concepts of financial freedom. It's built with HTML, Tailwind CSS, and vanilla JavaScript.
 
-<!-- <form action="https://api.web3forms.com/submit" method="POST">
-    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE"> -->
+## Pages
 
+*   **Home:** Introduction to the concept of financial independence.
+*   **Budgeting:** Explains the importance of budgeting and includes a financial health check quiz.
+*   **Investing:** Covers basic investment strategies and includes a rotating message with financial quotes.
+*   **Mindset:** Focuses on the psychological aspects of building wealth and includes a mindset self-assessment quiz.
 
+## How to Use
 
+1.  Clone the repository.
+2.  Open the `index.html` file in your browser to get started.
 
-     <!-- https://validator.w3.org/ -->
-<header id="header">
-  <div class="header-content">
-    <h1>This Page is Under Construction</h1>
-  </div>
-  <nav class="navbar">
-    <a href="../../index.html">Index</a>
-  </nav>
-</header>
+## Contributing
+
+Feel free to fork the repository and submit pull requests.
