@@ -1,0 +1,23 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# IDE and Editor Files
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.idea/
+
+# Build artifacts
+*.log
+*.tmp
+*.bak
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Other
+*.zip
+*.rar
+*.tar.gz
