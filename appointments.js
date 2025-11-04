@@ -133,17 +133,17 @@ function renderAppointmentsTable(appointments, doctors) {
     
     return `
       <tr>
-        <td><strong>${apt.patientName}</strong></td>
-        <td>${doctor ? doctor.name : 'Unknown'}</td>
-        <td>
+        <td data-label="Patient"><strong>${apt.patientName}</strong></td>
+        <td data-label="Doctor">${doctor ? doctor.name : 'Unknown'}</td>
+        <td data-label="Specialty">
           <span style="display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 11px; background-color: ${doctor ? doctor.color + '20' : '#ccc'}; color: ${doctor ? doctor.color : '#666'};">
             ${apt.specialty}
           </span>
         </td>
-        <td>${formatDate(apt.date)} ${formatTime(apt.time)}</td>
-        <td>${apt.duration} min</td>
-        <td><span class="status-badge ${statusClass}">${apt.status}</span></td>
-        <td>
+        <td data-label="Date & Time">${formatDate(apt.date)} ${formatTime(apt.time)}</td>
+        <td data-label="Duration">${apt.duration} min</td>
+        <td data-label="Status"><span class="status-badge ${statusClass}">${apt.status}</span></td>
+        <td data-label="Actions">
           <button class="btn btn--secondary btn-sm" onclick="editAppointment('${apt.id}')" style="padding: 4px 12px; font-size: 12px; margin-right: 4px;">Edit</button>
           <button class="btn btn--danger btn-sm" onclick="deleteAppointmentConfirm('${apt.id}')" style="padding: 4px 12px; font-size: 12px;">Cancel</button>
         </td>

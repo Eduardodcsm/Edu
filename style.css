@@ -1340,10 +1340,8 @@ body {
 .calendar-grid {
   display: grid;
   overflow-x: auto;
-}
-
-.calendar-header {
-  display: contents;
+  /* Ensure sticky positioning works */
+  position: relative;
 }
 
 .calendar-time-label,
@@ -1357,6 +1355,7 @@ body {
   position: sticky;
   left: 0;
   z-index: 2;
+  min-width: 80px; /* Ensure enough width for the labels */
 }
 
 .calendar-time-header {
@@ -1672,6 +1671,72 @@ body {
   .calendar-controls-right {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .top-bar {
+    padding: var(--space-16); /* Adjust padding for smaller screens */
+  }
+
+  #sidebarToggle {
+    display: flex; /* Ensure the toggle button is always visible on mobile */
+  }
+
+  /* Appointments Table Mobile Styles */
+  .appointments-table-container {
+    overflow-x: auto; /* Allow horizontal scrolling for the table */
+  }
+
+  .appointments-table {
+    width: 100%;
+    display: block; /* Make table behave like a block element */
+  }
+
+  .appointments-table thead {
+    display: none; /* Hide table headers on small screens */
+  }
+
+  .appointments-table tbody,
+  .appointments-table tr {
+    display: block; /* Make tbody and tr behave like block elements */
+  }
+
+  .appointments-table tr {
+    margin-bottom: var(--space-16);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .appointments-table td {
+    display: block; /* Make table cells behave like block elements */
+    text-align: right;
+    padding-left: 50%; /* Make space for the pseudo-element label */
+    position: relative;
+  }
+
+  .appointments-table td::before {
+    content: attr(data-label); /* Use data-label for column names */
+    position: absolute;
+    left: var(--space-16);
+    width: calc(50% - var(--space-16));
+    padding-right: var(--space-8);
+    white-space: nowrap;
+    text-align: left;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+  }
+
+  .modal-content {
+    width: 95%; /* Make modals take up more width on small screens */
+    max-width: none; /* Remove max-width constraint */
+  }
+
+  .modal-large {
+    max-width: none; /* Remove max-width constraint for large modals */
+  }
+
+  html {
+    font-size: 15px; /* Slightly increase base font size for mobile readability */
   }
 }
 
