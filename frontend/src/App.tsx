@@ -1,8 +1,8 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
-import AdminDashboard from './components/AdminDashboard';
-import './App.css';
+import AdminPage from './pages/AdminPage';
+import './styles/App.css';
 
 const theme = createTheme({
   palette: {
@@ -20,7 +20,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
-        <AdminDashboard />
+        <AdminPage />
       </Container>
     </ThemeProvider>
   );
