@@ -10,484 +10,414 @@
     <!-- Sidebar Navigation -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="logo">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <path d="M16 4C9.4 4 4 9.4 4 16s5.4 12 12 12 12-5.4 12-12S22.6 4 16 4zm0 20c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z" fill="currentColor"/>
-                </svg>
-                <h1>DentalFlow</h1>
+            <h1 class="sidebar-title">🦷 DentaCare</h1>
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+        <nav class="sidebar-nav" role="navigation">
+            <button class="nav-item active" data-section="dashboard" aria-label="Dashboard">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Dashboard</span>
+            </button>
+            <button class="nav-item" data-section="calendar" aria-label="Calendar">
+                <span class="nav-icon">📅</span>
+                <span class="nav-label">Calendar</span>
+            </button>
+            <button class="nav-item" data-section="doctors" aria-label="Doctor Management">
+                <span class="nav-icon">👨‍⚕️</span>
+                <span class="nav-label">Doctor Management</span>
+            </button>
+            <button class="nav-item" data-section="appointments" aria-label="Appointments">
+                <span class="nav-icon">📋</span>
+                <span class="nav-label">Appointments</span>
+            </button>
+            <button class="nav-item" data-section="analytics" aria-label="Analytics">
+                <span class="nav-icon">📈</span>
+                <span class="nav-label">Analytics</span>
+            </button>
+            <button class="nav-item" data-section="settings" aria-label="Settings">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Settings</span>
+            </button>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">AD</div>
+                <div class="user-info">
+                    <div class="user-name">Admin User</div>
+                    <div class="user-role">Practice Manager</div>
+                </div>
             </div>
         </div>
-        
-        <nav class="sidebar-nav">
-            <a href="#" class="nav-item active" data-view="dashboard">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="14" width="7" height="7"></rect>
-                    <rect x="3" y="14" width="7" height="7"></rect>
-                </svg>
-                <span>Dashboard</span>
-            </a>
-            <a href="#" class="nav-item" data-view="calendar">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-                <span>Calendar</span>
-            </a>
-            <a href="#" class="nav-item" data-view="doctors">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                <span>Doctors</span>
-            </a>
-            <a href="#" class="nav-item" data-view="appointments">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M16 2v4M8 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"></path>
-                </svg>
-                <span>Appointments</span>
-            </a>
-            <a href="#" class="nav-item" data-view="analytics">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="12" y1="20" x2="12" y2="10"></line>
-                    <line x1="18" y1="20" x2="18" y2="4"></line>
-                    <line x1="6" y1="20" x2="6" y2="16"></line>
-                </svg>
-                <span>Analytics</span>
-            </a>
-            <a href="#" class="nav-item" data-view="settings">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M12 1v6m0 6v6M5.6 5.6l4.2 4.2m4.2 4.2l4.2 4.2M1 12h6m6 0h6M5.6 18.4l4.2-4.2m4.2-4.2l4.2-4.2"></path>
-                </svg>
-                <span>Settings</span>
-            </a>
-        </nav>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-        <header class="top-bar">
-            <div class="top-bar-left">
-                <button class="btn-icon" id="sidebarToggle">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </button>
-                <h2 id="viewTitle">Dashboard</h2>
-            </div>
-            <div class="top-bar-right">
-                <div class="current-date" id="currentDate"></div>
-                <button class="btn btn--primary" id="addAppointmentBtn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>
-                    New Appointment
+        <!-- Dashboard Section -->
+        <section id="section-dashboard" class="content-section active">
+            <div class="section-header">
+                <h2 class="section-title">Dashboard</h2>
+                <button class="btn btn--primary" id="addAppointmentBtn" aria-label="Add new appointment">
+                    <span>+ Add Appointment</span>
                 </button>
             </div>
-        </header>
 
-        <div class="content-area">
-            <!-- Dashboard View -->
-            <div id="dashboardView" class="view active">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon" style="background: var(--color-bg-1);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-                            </svg>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-label">Total Doctors</div>
-                            <div class="stat-value" id="totalDoctors">0</div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon" style="background: var(--color-bg-3);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-label">Today's Appointments</div>
-                            <div class="stat-value" id="todayAppointments">0</div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon" style="background: var(--color-bg-2);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                            </svg>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-label">This Week</div>
-                            <div class="stat-value" id="weekAppointments">0</div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon" style="background: var(--color-bg-5);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                        </div>
-                        <div class="stat-content">
-                            <div class="stat-label">Utilization Rate</div>
-                            <div class="stat-value" id="utilizationRate">0%</div>
-                        </div>
+            <!-- Metrics Cards -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon" style="background: var(--color-bg-1);">👨‍⚕️</div>
+                    <div class="metric-content">
+                        <div class="metric-label">Total Doctors</div>
+                        <div class="metric-value" id="totalDoctors">6</div>
                     </div>
                 </div>
-
-                <div class="dashboard-grid">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Doctors on Duty</h3>
-                        </div>
-                        <div class="card-body" id="doctorsOnDuty"></div>
+                <div class="metric-card">
+                    <div class="metric-icon" style="background: var(--color-bg-2);">📅</div>
+                    <div class="metric-content">
+                        <div class="metric-label">Today's Appointments</div>
+                        <div class="metric-value" id="todayAppointments">0</div>
                     </div>
-                    
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Recent Activity</h3>
-                        </div>
-                        <div class="card-body" id="recentActivity">
-                            <div class="activity-list"></div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon" style="background: var(--color-bg-3);">📊</div>
+                    <div class="metric-content">
+                        <div class="metric-label">This Week</div>
+                        <div class="metric-value" id="weekAppointments">0</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon" style="background: var(--color-bg-4);">📈</div>
+                    <div class="metric-content">
+                        <div class="metric-label">Utilization Rate</div>
+                        <div class="metric-value" id="utilizationRate">0%</div>
+                        <div class="metric-progress">
+                            <div class="progress-bar" id="utilizationBar" style="width: 0%;"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Calendar View -->
-            <div id="calendarView" class="view">
+            <!-- Quick Stats Grid -->
+            <div class="quick-stats-grid">
+                <!-- On-Duty Doctors -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3>On-Duty Doctors</h3>
+                    </div>
+                    <div class="card__body" id="onDutyDoctors">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Upcoming Appointments -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3>Upcoming Appointments</h3>
+                    </div>
+                    <div class="card__body" id="upcomingAppointments">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calendar Section -->
+        <section id="section-calendar" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Calendar</h2>
                 <div class="calendar-controls">
-                    <div class="calendar-controls-left">
-                        <button class="btn btn--secondary" id="todayBtn">Today</button>
-                        <div class="btn-group">
-                            <button class="btn-icon" id="prevPeriod">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="15 18 9 12 15 6"></polyline>
-                                </svg>
-                            </button>
-                            <button class="btn-icon" id="nextPeriod">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="9 18 15 12 9 6"></polyline>
-                                </svg>
-                            </button>
-                        </div>
-                        <h3 id="calendarMonth">November 2025</h3>
-                    </div>
-                    <div class="calendar-controls-right">
-                        <select class="form-control" id="viewTypeSelect">
-                            <option value="day">Day</option>
-                            <option value="week" selected>Week</option>
-                            <option value="month">Month</option>
-                        </select>
-                        <select class="form-control" id="filterSpecialty">
-                            <option value="">All Specialties</option>
-                        </select>
-                        <select class="form-control" id="filterDoctor">
-                            <option value="">All Doctors</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="calendar-container" id="calendarContainer">
-                    <!-- Calendar will be rendered here -->
+                    <select class="form-control" id="calendarDoctorFilter" aria-label="Filter by doctor">
+                        <option value="">All Doctors</option>
+                    </select>
+                    <select class="form-control" id="calendarSpecialtyFilter" aria-label="Filter by specialty">
+                        <option value="">All Specialties</option>
+                    </select>
+                    <button class="btn btn--secondary" id="prevMonth" aria-label="Previous month">‹</button>
+                    <button class="btn btn--secondary" id="nextMonth" aria-label="Next month">›</button>
+                    <button class="btn btn--primary" id="addAppointmentFromCalendar" aria-label="Add appointment">+ Add Appointment</button>
                 </div>
             </div>
+            <div class="calendar-header" id="calendarMonthYear"></div>
+            <div class="calendar-container" id="calendar">
+                <!-- Populated by JS -->
+            </div>
+        </section>
 
-            <!-- Doctors View -->
-            <div id="doctorsView" class="view">
-                <div class="view-header">
-                    <div>
-                        <h3>Doctor Management</h3>
-                        <p class="view-subtitle">Manage doctor profiles, schedules, and availability</p>
-                    </div>
-                    <button class="btn btn--primary" id="addDoctorBtn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                        </svg>
-                        Add Doctor
-                    </button>
-                </div>
-                
-                <div class="doctors-grid" id="doctorsGrid"></div>
+        <!-- Doctor Management Section -->
+        <section id="section-doctors" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Doctor Management</h2>
+                <button class="btn btn--primary" id="addDoctorBtn" aria-label="Add new doctor">
+                    <span>+ Add Doctor</span>
+                </button>
             </div>
+            <div class="doctors-grid" id="doctorsGrid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
 
-            <!-- Appointments View -->
-            <div id="appointmentsView" class="view">
-                <div class="view-header">
-                    <div>
-                        <h3>Appointment Management</h3>
-                        <p class="view-subtitle">View and manage all appointments</p>
-                    </div>
-                    <div class="view-actions">
-                        <input type="text" class="form-control" id="searchAppointments" placeholder="Search appointments...">
-                        <select class="form-control" id="appointmentStatusFilter">
-                            <option value="">All Status</option>
-                            <option value="Confirmed">Confirmed</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Cancelled">Cancelled</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="appointments-table-container">
-                    <table class="appointments-table" id="appointmentsTable">
-                        <thead>
-                            <tr>
-                                <th>Patient</th>
-                                <th>Doctor</th>
-                                <th>Specialty</th>
-                                <th>Date &amp; Time</th>
-                                <th>Duration</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="appointmentsTableBody"></tbody>
-                    </table>
-                </div>
+        <!-- Appointments Section -->
+        <section id="section-appointments" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Appointments</h2>
+                <button class="btn btn--primary" id="addAppointmentFromTable" aria-label="Add new appointment">
+                    <span>+ Add Appointment</span>
+                </button>
             </div>
+            <div class="appointments-controls">
+                <input type="text" class="form-control" id="appointmentSearch" placeholder="Search by patient, doctor, or specialty..." aria-label="Search appointments">
+                <select class="form-control" id="statusFilter" aria-label="Filter by status">
+                    <option value="">All Status</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Cancelled">Cancelled</option>
+                    <option value="Completed">Completed</option>
+                </select>
+                <select class="form-control" id="perPage" aria-label="Items per page">
+                    <option value="10">10 per page</option>
+                    <option value="25">25 per page</option>
+                    <option value="50">50 per page</option>
+                </select>
+            </div>
+            <div class="table-container">
+                <table class="appointments-table" role="table">
+                    <thead>
+                        <tr>
+                            <th role="columnheader" class="sortable" data-sort="patientName">Patient Name</th>
+                            <th role="columnheader" class="sortable" data-sort="doctor">Doctor</th>
+                            <th role="columnheader" class="sortable" data-sort="specialty">Specialty</th>
+                            <th role="columnheader" class="sortable" data-sort="date">Date &amp; Time</th>
+                            <th role="columnheader" class="sortable" data-sort="duration">Duration</th>
+                            <th role="columnheader" class="sortable" data-sort="type">Type</th>
+                            <th role="columnheader" class="sortable" data-sort="status">Status</th>
+                            <th role="columnheader">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsTableBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination" id="pagination">
+                <!-- Populated by JS -->
+            </div>
+        </section>
 
-            <!-- Analytics View -->
-            <div id="analyticsView" class="view">
-                <div class="view-header">
-                    <h3>Analytics &amp; Reports</h3>
-                    <p class="view-subtitle">Performance metrics and insights</p>
-                </div>
-                
-                <div class="analytics-grid">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Doctor Utilization</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="utilizationChart"></canvas>
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Appointments by Specialty</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="specialtyChart"></canvas>
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Weekly Appointments</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="weeklyChart"></canvas>
-                        </div>
-                    </div>
-                </div>
+        <!-- Analytics Section (Placeholder) -->
+        <section id="section-analytics" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Analytics</h2>
             </div>
+            <div class="placeholder-content">
+                <p>Analytics dashboard coming soon...</p>
+            </div>
+        </section>
 
-            <!-- Settings View -->
-            <div id="settingsView" class="view">
-                <div class="view-header">
-                    <h3>Settings</h3>
-                    <p class="view-subtitle">Configure system preferences</p>
-                </div>
-                
-                <div class="settings-grid">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Business Hours</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label class="form-label">Opening Time</label>
-                                <input type="time" class="form-control" id="openingTime" value="08:00">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Closing Time</label>
-                                <input type="time" class="form-control" id="closingTime" value="18:00">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Working Days</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="checkbox-group">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" checked> Monday
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" checked> Tuesday
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" checked> Wednesday
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" checked> Thursday
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" checked> Friday
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox"> Saturday
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox"> Sunday
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Settings Section (Placeholder) -->
+        <section id="section-settings" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Settings</h2>
             </div>
-        </div>
+            <div class="placeholder-content">
+                <p>Settings panel coming soon...</p>
+            </div>
+        </section>
     </main>
 
-    <!-- Appointment Modal -->
-    <div id="appointmentModal" class="modal hidden">
-        <div class="modal-overlay"></div>
-        <div class="modal-content modal-large">
+    <!-- Add/Edit Appointment Modal -->
+    <div class="modal" id="appointmentModal" role="dialog" aria-labelledby="appointmentModalTitle" aria-hidden="true">
+        <div class="modal-content" role="document">
             <div class="modal-header">
-                <h3 id="appointmentModalTitle">New Appointment</h3>
-                <button class="btn-icon" id="closeAppointmentModal">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
+                <h3 id="appointmentModalTitle">Add Appointment</h3>
+                <button class="modal-close" aria-label="Close modal">&times;</button>
             </div>
             <div class="modal-body">
                 <form id="appointmentForm">
-                    <div class="form-grid-2">
-                        <div class="form-group">
-                            <label class="form-label">Patient Name</label>
-                            <input type="text" class="form-control" id="patientName" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="patientPhone">
-                        </div>
-                    </div>
-                    
-                    <div class="form-grid-2">
-                        <div class="form-group">
-                            <label class="form-label">Specialty</label>
-                            <select class="form-control" id="appointmentSpecialty" required>
-                                <option value="">Select specialty</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Doctor</label>
-                            <select class="form-control" id="appointmentDoctor" required>
-                                <option value="">Select doctor</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-grid-2">
-                        <div class="form-group">
-                            <label class="form-label">Date</label>
-                            <input type="date" class="form-control" id="appointmentDate" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Time</label>
-                            <input type="time" class="form-control" id="appointmentTime" required>
-                        </div>
-                    </div>
-                    
                     <div class="form-group">
-                        <label class="form-label">Appointment Type</label>
-                        <select class="form-control" id="appointmentType">
-                            <option>Checkup</option>
-                            <option>Cleaning</option>
-                            <option>Root Canal</option>
-                            <option>Consultation</option>
-                            <option>Treatment</option>
-                            <option>Follow-up</option>
+                        <label for="patientName" class="form-label">Patient Name <span class="required">*</span></label>
+                        <input type="text" id="patientName" class="form-control" required aria-required="true">
+                        <span class="error-message" id="patientNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="patientPhone" class="form-label">Patient Phone</label>
+                        <input type="tel" id="patientPhone" class="form-control" placeholder="(555) 123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="appointmentSpecialty" class="form-label">Specialty <span class="required">*</span></label>
+                        <select id="appointmentSpecialty" class="form-control" required aria-required="true">
+                            <option value="">Select specialty</option>
+                        </select>
+                        <span class="error-message" id="specialtyError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointmentDoctor" class="form-label">Doctor <span class="required">*</span></label>
+                        <select id="appointmentDoctor" class="form-control" required aria-required="true" disabled>
+                            <option value="">Select doctor</option>
+                        </select>
+                        <span class="helper-text">Select a specialty first</span>
+                        <span class="error-message" id="doctorError"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="appointmentDate" class="form-label">Date <span class="required">*</span></label>
+                            <input type="date" id="appointmentDate" class="form-control" required aria-required="true">
+                            <span class="error-message" id="dateError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentTime" class="form-label">Time <span class="required">*</span></label>
+                            <input type="time" id="appointmentTime" class="form-control" required aria-required="true">
+                            <span class="error-message" id="timeError"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointmentDuration" class="form-label">Duration <span class="required">*</span></label>
+                        <select id="appointmentDuration" class="form-control" required aria-required="true">
+                            <option value="15">15 minutes</option>
+                            <option value="30" selected>30 minutes</option>
+                            <option value="45">45 minutes</option>
+                            <option value="60">60 minutes</option>
                         </select>
                     </div>
-                    
                     <div class="form-group">
-                        <label class="form-label">Notes</label>
-                        <textarea class="form-control" id="appointmentNotes" rows="3"></textarea>
+                        <label for="appointmentType" class="form-label">Appointment Type <span class="required">*</span></label>
+                        <select id="appointmentType" class="form-control" required aria-required="true">
+                            <option value="">Select type</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointmentStatus" class="form-label">Status</label>
+                        <select id="appointmentStatus" class="form-control">
+                            <option value="Pending">Pending</option>
+                            <option value="Confirmed" selected>Confirmed</option>
+                            <option value="Cancelled">Cancelled</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointmentNotes" class="form-label">Notes</label>
+                        <textarea id="appointmentNotes" class="form-control" rows="3" placeholder="Additional notes or special requirements..."></textarea>
+                    </div>
+                    <div class="conflict-warning" id="conflictWarning" style="display: none;">
+                        <strong>⚠️ Warning:</strong> This time slot conflicts with an existing appointment.
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn--secondary" id="cancelAppointmentModal">Cancel</button>
-                <button class="btn btn--primary" id="saveAppointment">Save Appointment</button>
+                <button type="button" class="btn btn--secondary" id="cancelAppointment">Cancel</button>
+                <button type="submit" class="btn btn--primary" id="saveAppointment" form="appointmentForm">Save Appointment</button>
             </div>
         </div>
     </div>
 
-    <!-- Doctor Modal -->
-    <div id="doctorModal" class="modal hidden">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
+    <!-- Add/Edit Doctor Modal -->
+    <div class="modal" id="doctorModal" role="dialog" aria-labelledby="doctorModalTitle" aria-hidden="true">
+        <div class="modal-content" role="document">
             <div class="modal-header">
                 <h3 id="doctorModalTitle">Add Doctor</h3>
-                <button class="btn-icon" id="closeDoctorModal">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
+                <button class="modal-close" aria-label="Close modal">&times;</button>
             </div>
             <div class="modal-body">
                 <form id="doctorForm">
                     <div class="form-group">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="doctorName" required>
+                        <label for="doctorName" class="form-label">Doctor Name <span class="required">*</span></label>
+                        <input type="text" id="doctorName" class="form-control" required aria-required="true" placeholder="Dr. John Doe">
+                        <span class="error-message" id="doctorNameError"></span>
                     </div>
-                    
                     <div class="form-group">
-                        <label class="form-label">Specialty</label>
-                        <select class="form-control" id="doctorSpecialty" required>
+                        <label for="doctorSpecialty" class="form-label">Specialty <span class="required">*</span></label>
+                        <select id="doctorSpecialty" class="form-control" required aria-required="true">
                             <option value="">Select specialty</option>
                         </select>
                     </div>
-                    
                     <div class="form-group">
-                        <label class="form-label">License Number</label>
-                        <input type="text" class="form-control" id="doctorLicense" required>
+                        <label for="licenseNumber" class="form-label">License Number <span class="required">*</span></label>
+                        <input type="text" id="licenseNumber" class="form-control" required aria-required="true" placeholder="DT-2025-XXX">
                     </div>
-                    
-                    <div class="form-grid-2">
+                    <div class="form-group">
+                        <label for="doctorBio" class="form-label">Professional Bio</label>
+                        <textarea id="doctorBio" class="form-control" rows="3" placeholder="Professional background and expertise..."></textarea>
+                    </div>
+                    <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">Working Hours Start</label>
-                            <input type="time" class="form-control" id="doctorStartTime" value="08:00">
+                            <label for="workStart" class="form-label">Work Start Time <span class="required">*</span></label>
+                            <input type="time" id="workStart" class="form-control" required aria-required="true" value="09:00">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Working Hours End</label>
-                            <input type="time" class="form-control" id="doctorEndTime" value="18:00">
+                            <label for="workEnd" class="form-label">Work End Time <span class="required">*</span></label>
+                            <input type="time" id="workEnd" class="form-control" required aria-required="true" value="17:00">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Working Days <span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="workingDays" value="Monday" checked> Monday
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="workingDays" value="Tuesday" checked> Tuesday
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="workingDays" value="Wednesday" checked> Wednesday
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="workingDays" value="Thursday" checked> Thursday
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="workingDays" value="Friday" checked> Friday
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="workingDays" value="Saturday"> Saturday
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="workingDays" value="Sunday"> Sunday
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="doctorStatus" class="form-label">Status</label>
+                        <select id="doctorStatus" class="form-control">
+                            <option value="Working" selected>Working</option>
+                            <option value="Off-Duty">Off-Duty</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="doctorColor" class="form-label">Badge Color</label>
+                        <input type="color" id="doctorColor" class="form-control color-input" value="#2180CE">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn--secondary" id="cancelDoctorModal">Cancel</button>
-                <button class="btn btn--primary" id="saveDoctor">Save Doctor</button>
+                <button type="button" class="btn btn--secondary" id="cancelDoctor">Cancel</button>
+                <button type="submit" class="btn btn--primary" id="saveDoctor" form="doctorForm">Save Doctor</button>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="main.js"></script>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="alert" aria-live="polite" aria-atomic="true">
+        <div class="toast-content">
+            <span class="toast-icon" id="toastIcon"></span>
+            <span class="toast-message" id="toastMessage"></span>
+        </div>
+    </div>
+
+    <!-- Confirmation Dialog -->
+    <div class="modal" id="confirmDialog" role="alertdialog" aria-labelledby="confirmDialogTitle" aria-hidden="true">
+        <div class="modal-content modal-content--small" role="document">
+            <div class="modal-header">
+                <h3 id="confirmDialogTitle">Confirm Action</h3>
+            </div>
+            <div class="modal-body">
+                <p id="confirmDialogMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn--secondary" id="confirmCancel">Cancel</button>
+                <button type="button" class="btn btn--primary" id="confirmOk">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
