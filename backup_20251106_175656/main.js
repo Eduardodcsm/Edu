@@ -138,14 +138,6 @@
     }
   }
 
-  const modules = {
-    dashboard: DashboardModule,
-    doctors: DoctorsModule,
-    appointments: AppointmentsModule,
-    calendar: CalendarModule,
-    settings: SettingsModule
-  };
-
   // Load a module
   function loadModule(moduleName) {
     console.log(`Loading module: ${moduleName}`);
@@ -153,10 +145,8 @@
     const mainContent = document.getElementById('mainContent');
     if (!mainContent) return;
 
-    // Only clear content if the module is different
-    if (AppState.currentModule !== moduleName) {
-        mainContent.innerHTML = '';
-    }
+    // Clear current content
+    mainContent.innerHTML = '';
 
     // Update state
     AppState.currentModule = moduleName;
@@ -167,11 +157,34 @@
     }
 
     // Load the appropriate module
-    const module = modules[moduleName];
-    if (module && typeof module.render === 'function') {
-      module.render(mainContent);
-    } else {
-      mainContent.innerHTML = '<div class="placeholder-content"><p>Module not found</p></div>';
+    switch (moduleName) {
+      case 'dashboard':
+        if (typeof DashboardModule !== 'undefined') {
+          DashboardModule.render(mainContent);
+        }
+        break;
+      case 'doctors':
+        if (typeof DoctorsModule !== 'undefined') {
+          DoctorsModule.render(mainContent);
+        }
+        break;
+      case 'appointments':
+        if (typeof AppointmentsModule !== 'undefined') {
+          AppointmentsModule.render(mainContent);
+        }
+        break;
+      case 'calendar':
+        if (typeof CalendarModule !== 'undefined') {
+          CalendarModule.render(mainContent);
+        }
+        break;
+      case 'settings':
+        if (typeof SettingsModule !== 'undefined') {
+          SettingsModule.render(mainContent);
+        }
+        break;
+      default:
+        mainContent.innerHTML = '<div class="placeholder-content"><p>Module not found</p></div>';
     }
   }
 
