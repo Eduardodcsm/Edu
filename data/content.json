@@ -1,0 +1,71 @@
+{
+    "levels": {
+        "A1": {
+            "name": "Beginner",
+            "modules": [
+                {
+                    "title": "The Ukrainian Alphabet",
+                    "description": "Learn the 33 letters of the beautiful Ukrainian alphabet.",
+                    "lessons": [
+                        {
+                            "title": "Introduction to Cyrillic",
+                            "content": "<h3>Welcome!</h3><p>The Ukrainian alphabet, called 'алфавіт' or 'абетка', is based on the Cyrillic script. It has 33 letters. Many might look familiar, but some have different sounds. Let's start with the first few.</p>"
+                        },
+                        {
+                            "title": "Vowels",
+                            "content": "<h4>Vowels (Голосні)</h4><p>Ukrainian has 10 vowels: <strong>а, е, є, и, і, ї, о, у, ю, я</strong>. They are key to pronunciation!</p>"
+                        },
+                        {
+                            "title": "Consonants",
+                            "content": "<h4>Consonants (Приголосні)</h4><p>Let's look at some consonants. <strong>Б (b), В (v), Г (h), Ґ (g), Д (d)</strong>. Notice the sound of Г is like 'h' in 'hello'.</p>"
+                        }
+                    ]
+                },
+                {
+                    "title": "Basic Greetings",
+                    "description": "How to say hello, goodbye, and thank you.",
+                    "lessons": [
+                        {
+                            "title": "Hello and Goodbye",
+                            "content": "<h3>Greetings</h3><p>The most common informal greeting is <strong class=\"ukrainian-text\">Привіт (pryvit)</strong>. For formal situations or saying 'good day', use <strong class=\"ukrainian-text\">Добрий день (dobryi den)</strong>.</p><p>To say goodbye, use <strong class=\"ukrainian-text\">До побачення (do pobachennia)</strong>.</p>"
+                        },
+                        {
+                            "title": "Essential Politeness",
+                            "content": "<h3>Polite Phrases</h3><p>Always use <strong class=\"ukrainian-text\">Дякую (diakuiu)</strong> for 'Thank you' and <strong class=\"ukrainian-text\">Будь ласка (bud laska)</strong> for 'Please' or 'You're welcome'.</p>"
+                        }
+                    ]
+                }
+            ]
+        },
+        "A2": {
+            "name": "Elementary",
+            "modules": [
+                {
+                    "title": "Food & Drink",
+                    "description": "Learn essential vocabulary for food and ordering at a restaurant.",
+                    "lessons": [
+                        {
+                            "title": "Basic Foods",
+                            "content": "<h3>Common Foods</h3><p>Let's learn some basic food items. Bread is <strong class=\"ukrainian-text\">хліб (khlib)</strong>, water is <strong class=\"ukrainian-text\">вода (voda)</strong>, and milk is <strong class=\"ukrainian-text\">молоко (moloko)</strong>.</p>"
+                        }
+                    ]
+                }
+            ]
+        },
+        "B1": { "name": "Intermediate", "modules": [] },
+        "B2": { "name": "Upper-Intermediate", "modules": [] },
+        "C1": { "name": "Advanced", "modules": [] },
+        "C2": { "name": "Mastery", "modules": [] }
+    },
+    "vocabulary": [
+        { "ukrainian": "Привіт", "english": "Hello", "ipa": "prɪˈvit", "example": "Привіт, як справи?" },
+        { "ukrainian": "Дякую", "english": "Thank you", "ipa": "ˈdjakʊjʊ", "example": "Дякую за допомогу." },
+        { "ukrainian": "Будь ласка", "english": "Please / You're welcome", "ipa": "bud ˈlaska", "example": "Дайте, будь ласка, меню." },
+        { "ukrainian": "Так", "english": "Yes", "ipa": "tak", "example": "Так, я розумію." },
+        { "ukrainian": "Ні", "english": "No", "ipa": "ni", "example": "Ні, я не хочу." },
+        { "ukrainian": "мама", "english": "mother", "ipa": "ˈmama", "example": "Моя мама тут." },
+        { "ukrainian": "тато", "english": "father", "ipa": "ˈtato", "example": "Мій тато лікар." },
+        { "ukrainian": "хліб", "english": "bread", "ipa": "xlib", "example": "Я люблю свіжий хліб." },
+        { "ukrainian": "молоко", "english": "milk", "ipa": "moloˈko", "example": "Дайте, будь ласка, молоко." }
+    ]
+}
