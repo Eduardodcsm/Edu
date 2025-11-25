@@ -146,46 +146,64 @@ const App = {
                     return;
                 }
 
-                App.DOM.els.pageContent.appendChild(
-                    createEl('div', {
-                        id: 'page-home',
-                        children: [
-                            createEl('div', {
-                                className: 'welcome-header',
-                                children: [
-                                    createEl('h1', { textContent: `Привіт, ${user.name}!` }),
-                                    createEl('p', { textContent: 'Welcome back! Ready to learn some Ukrainian?' })
-                                ]
-                            }),
-                            createEl('div', {
-                                className: 'stats-grid',
-                                children: [
-                                    createEl('div', { className: 'card', innerHTML: `<h4>Words Learned</h4><p class="ukrainian-text">${App.data.vocabulary.filter(v => v.mastery > 0).length}</p>` }),
-                                    createEl('div', { className: 'card', innerHTML: `<h4>Modules Completed</h4><p class="ukrainian-text">${Object.values(App.data.progress.modulesCompleted).flat().length}</p>` }),
-                                    createEl('div', { className: 'card', innerHTML: `<h4>Current Level</h4><p class="ukrainian-text">${user.level}</p>` })
-                                ]
-                            }),
-                            createEl('div', {
-                                className: 'card',
-                                children: [
-                                    createEl('h3', { textContent: 'Word of the Day' }),
-                                    createEl('div', {
-                                        className: 'd-flex justify-between align-center',
-                                        children: [
-                                            createEl('div', { innerHTML: `<p class="ukrainian-text">${wordOfTheDay.ukrainian}</p><p><em>${wordOfTheDay.english}</em></p>` }),
-                                            createEl('button', {
-                                                className: 'btn btn-outline',
-                                                textContent: '🔊',
-                                                attributes: { 'aria-label': 'Speak word' },
-                                                onClick: () => App.Audio.speak(wordOfTheDay.ukrainian)
-                                            })
-                                        ]
-                                    })
-                                ]
-                            })
-                        ]
-                    })
-                );
+                const pageHome = createEl('div', { id: 'page-home' });
+
+                // Welcome Header
+                const welcomeHeader = createEl('div', { className: 'welcome-header' });
+                welcomeHeader.appendChild(createEl('h1', { textContent: `Привіт, ${user.name}!` }));
+                welcomeHeader.appendChild(createEl('p', { textContent: 'Welcome back! Ready to learn some Ukrainian?' }));
+                pageHome.appendChild(welcomeHeader);
+
+                // Stats Grid
+                const statsGrid = createEl('div', { className: 'stats-grid' });
+                statsGrid.appendChild(createEl('div', { className: 'card', innerHTML: `<h4>Words Learned</h4><p class="ukrainian-text">${App.data.vocabulary.filter(v => v.mastery > 0).length}</p>` }));
+                statsGrid.appendChild(createEl('div', { className: 'card', innerHTML: `<h4>Modules Completed</h4><p class="ukrainian-text">${Object.values(App.data.progress.modulesCompleted).flat().length}</p>` }));
+                statsGrid.appendChild(createEl('div', { className: 'card', innerHTML: `<h4>Current Level</h4><p class="ukrainian-text">${user.level}</p>` }));
+                pageHome.appendChild(statsGrid);
+                
+                const homeGrid = createEl('div', { className: 'home-grid'});
+
+                // Word of the Day
+                const wodCard = createEl('div', { className: 'card' });
+                wodCard.appendChild(createEl('h3', { textContent: 'Word of the Day' }));
+                const wodContent = createEl('div', { className: 'd-flex justify-between align-center' });
+                const wodText = createEl('div', { innerHTML: `<p class="ukrainian-text">${wordOfTheDay.ukrainian}</p><p><em>${wordOfTheDay.english}</em></p>` });
+                const wodButton = createEl('button', {
+                    className: 'btn btn-outline',
+                    textContent: '🔊',
+                    attributes: { 'aria-label': 'Speak word' },
+                    onClick: () => App.Audio.speak(wordOfTheDay.ukrainian)
+                });
+                wodContent.appendChild(wodText);
+                wodContent.appendChild(wodButton);
+                wodCard.appendChild(wodContent);
+                homeGrid.appendChild(wodCard);
+
+                // Featured Lesson
+                const featuredLessonCard = createEl('div', { className: 'card' });
+                featuredLessonCard.appendChild(createEl('h3', { textContent: 'Featured Lesson' }));
+                featuredLessonCard.appendChild(createEl('p', { textContent: 'Learn basic greetings and essential polite phrases.' }));
+                const featuredLessonButton = createEl('button', {
+                    className: 'btn btn-primary',
+                    textContent: 'Start Lesson',
+                    onClick: () => App.Router.navigateTo('lessons')
+                });
+                featuredLessonCard.appendChild(featuredLessonButton);
+                homeGrid.appendChild(featuredLessonCard);
+                
+                pageHome.appendChild(homeGrid);
+
+                // Community Activity
+                const communityCard = createEl('div', { className: 'card' });
+                communityCard.appendChild(createEl('h3', { textContent: 'Recent Community Activity' }));
+                const post1 = createEl('div', { className: 'community-post', innerHTML: `<p><strong>Maria:</strong> How do you use the instrumental case?</p>` });
+                const post2 = createEl('div', { className: 'community-post', innerHTML: `<p><strong>John:</strong> I'm looking for a practice partner!</p>` });
+                communityCard.appendChild(post1);
+                communityCard.appendChild(post2);
+                pageHome.appendChild(communityCard);
+
+
+                App.DOM.els.pageContent.appendChild(pageHome);
             }
         },
         lessons: {
@@ -194,6 +212,9 @@ const App = {
                 const pageContainer = createEl('div', { id: 'page-lessons' });
                 
                 pageContainer.appendChild(createEl('h2', { textContent: 'Lessons' }));
+
+                const videoCard = createEl('div', { className: 'card', innerHTML: '<h3>Video Tutorials (Coming Soon)</h3><p>Interactive video lessons to supplement your learning.</p>' });
+                pageContainer.appendChild(videoCard);
 
                 const levelSelector = createEl('div', { className: 'level-selector' });
                 const levels = Object.keys(App.data.content.levels);
@@ -299,7 +320,8 @@ const App = {
                         createEl('div', { className: 'module-grid', children: [
                             createEl('div', { className: 'card practice-card', style: 'cursor: pointer;', innerHTML: `<h4>Flashcards</h4><p>Review vocabulary with spaced repetition.</p>`, onClick: () => App.Practice.start('flashcards') }),
                             createEl('div', { className: 'card practice-card', style: 'cursor: pointer;', innerHTML: `<h4>Pronunciation</h4><p>Record and compare your pronunciation.</p>`, onClick: () => App.Practice.start('pronunciation') }),
-                            createEl('div', { className: 'card practice-card', style: 'cursor: pointer;', innerHTML: `<h4>Vocabulary Quiz</h4><p>Test your knowledge with various quiz types.</p>`, onClick: () => App.Practice.start('quiz') })
+                            createEl('div', { className: 'card practice-card', style: 'cursor: pointer;', innerHTML: `<h4>Vocabulary Quiz</h4><p>Test your knowledge with various quiz types.</p>`, onClick: () => App.Practice.start('quiz') }),
+                            createEl('div', { className: 'card practice-card', style: 'cursor: pointer;', innerHTML: `<h4>Gamified Challenges (Coming Soon)</h4><p>Fun, timed tasks to improve your skills.</p>`, onClick: () => {} })
                         ]})
                     ]})
                  );
@@ -317,10 +339,151 @@ const App = {
                 }
             };
         },
-        community: null, // Will be initialized below
-        progress: null,
-        resources: null,
-        settings: null,
+        community: {
+            render() {
+                const leaderboardData = [
+                    { name: 'Maria', xp: 1250 },
+                    { name: 'John', xp: 1100 },
+                    { name: 'Student', xp: App.data.userProfile.xp },
+                    { name: 'Olena', xp: 800 },
+                    { name: 'Andriy', xp: 750 },
+                ].sort((a, b) => b.xp - a.xp);
+
+                const page = createEl('div', { id: 'page-community' });
+                page.appendChild(createEl('h2', { textContent: 'Community' }));
+                
+                const card = createEl('div', { className: 'card' });
+                card.appendChild(createEl('h3', { textContent: 'Leaderboard' }));
+
+                const list = createEl('ul', { className: 'leaderboard-list' });
+                leaderboardData.forEach((user, index) => {
+                    const item = createEl('li', {
+                        className: 'leaderboard-item',
+                        innerHTML: `
+                            <span class="leaderboard-rank">${index + 1}</span>
+                            <span class="leaderboard-name">${user.name}</span>
+                            <span class="leaderboard-xp">${user.xp} XP</span>
+                        `
+                    });
+                    if (user.name === 'Student') {
+                        item.classList.add('current-user');
+                    }
+                    list.appendChild(item);
+                });
+
+                card.appendChild(list);
+                page.appendChild(card);
+                App.DOM.els.pageContent.appendChild(page);
+            }
+        },
+        progress: {
+            render() {
+                const page = createEl('div', { id: 'page-progress' });
+                page.appendChild(createEl('h2', { textContent: 'My Progress' }));
+
+                // Achievements
+                const achievementsCard = createEl('div', { className: 'card' });
+                achievementsCard.appendChild(createEl('h3', { textContent: 'Achievements' }));
+                const achievementsGrid = createEl('div', { className: 'achievements-grid' });
+                
+                const achievements = [
+                    { icon: '🔥', title: '5-Day Streak', earned: App.data.userProfile.streak >= 5 },
+                    { icon: '📚', title: 'First Module', earned: Object.values(App.data.progress.modulesCompleted).flat().length > 0 },
+                    { icon: '⭐', title: '1000 XP', earned: App.data.userProfile.xp >= 1000 },
+                    { icon: '🗣️', title: '100 Words', earned: App.data.vocabulary.filter(v => v.mastery > 0).length >= 100 },
+                ];
+
+                achievements.forEach(ach => {
+                    const achievement = createEl('div', { 
+                        className: `achievement ${ach.earned ? 'earned' : ''}`,
+                        innerHTML: `<div class="achievement-icon">${ach.icon}</div><div class="achievement-title">${ach.title}</div>`
+                    });
+                    achievementsGrid.appendChild(achievement);
+                });
+                achievementsCard.appendChild(achievementsGrid);
+                page.appendChild(achievementsCard);
+
+                // Goal Setting
+                const goalCard = createEl('div', { className: 'card' });
+                goalCard.appendChild(createEl('h3', { textContent: 'Set Your Daily Goal' }));
+                const goalInput = createEl('input', { 
+                    type: 'number', 
+                    className: 'goal-input', 
+                    value: App.data.settings.dailyGoal || 50,
+                    attributes: { 'aria-label': 'Daily XP Goal' }
+                });
+                const goalButton = createEl('button', {
+                    className: 'btn btn-primary',
+                    textContent: 'Set Goal',
+                    onClick: () => {
+                        const newGoal = parseInt(goalInput.value);
+                        if (newGoal > 0) {
+                            App.data.settings.dailyGoal = newGoal;
+                            App.DataManager.save('settings');
+                            App.UI.showToast(`Daily goal set to ${newGoal} XP!`);
+                        }
+                    }
+                });
+                goalCard.appendChild(goalInput);
+                goalCard.appendChild(goalButton);
+                page.appendChild(goalCard);
+
+                App.DOM.els.pageContent.appendChild(page);
+            }
+        },
+        resources: {
+            render() {
+                const page = createEl('div', { id: 'page-resources' });
+                page.appendChild(createEl('h2', { textContent: 'Resources' }));
+                
+                const articlesCard = createEl('div', { className: 'card' });
+                articlesCard.appendChild(createEl('h3', { textContent: 'Helpful Articles' }));
+                articlesCard.appendChild(createEl('a', { href: '#', textContent: 'Understanding Ukrainian Cases' }));
+                articlesCard.appendChild(createEl('a', { href: '#', textContent: 'Tips for Improving Pronunciation' }));
+                page.appendChild(articlesCard);
+
+                const linksCard = createEl('div', { className: 'card' });
+                linksCard.appendChild(createEl('h3', { textContent: 'External Links' }));
+                linksCard.appendChild(createEl('a', { href: 'https://www.ukrainianlessons.com/', textContent: 'Ukrainian Lessons Podcast' }));
+                linksCard.appendChild(createEl('a', { href: 'https://www.duolingo.com/course/uk/en/Learn-Ukrainian', textContent: 'Duolingo Ukrainian' }));
+                page.appendChild(linksCard);
+
+                App.DOM.els.pageContent.appendChild(page);
+            }
+        },
+        settings: {
+            render() {
+                const page = createEl('div', { id: 'page-settings' });
+                page.appendChild(createEl('h2', { textContent: 'Settings' }));
+
+                const themeCard = createEl('div', { className: 'card' });
+                themeCard.appendChild(createEl('h3', { textContent: 'Theme Color' }));
+                const themeContainer = createEl('div', { className: 'theme-options' });
+                const colors = ['#007BFF', '#00E676', '#FF5252', '#FFD700'];
+                colors.forEach(color => {
+                    const colorOption = createEl('div', {
+                        className: 'theme-color-option',
+                        style: `background-color: ${color}`,
+                        onClick: () => App.UI.setThemeColor(color)
+                    });
+                    themeContainer.appendChild(colorOption);
+                });
+                themeCard.appendChild(themeContainer);
+                page.appendChild(themeCard);
+
+                const fontCard = createEl('div', { className: 'card' });
+                fontCard.appendChild(createEl('h3', { textContent: 'Font Size' }));
+                const fontContainer = createEl('div', { className: 'font-size-options' });
+                const fontButtonSmall = createEl('button', { className: 'btn', textContent: 'A-', onClick: () => App.UI.adjustFontSize(-1) });
+                const fontButtonLarge = createEl('button', { className: 'btn', textContent: 'A+', onClick: () => App.UI.adjustFontSize(1) });
+                fontContainer.appendChild(fontButtonSmall);
+                fontContainer.appendChild(fontButtonLarge);
+                fontCard.appendChild(fontContainer);
+                page.appendChild(fontCard);
+
+                App.DOM.els.pageContent.appendChild(page);
+            }
+        },
     },
     
     // --- PRACTICE MODULES ---
@@ -531,6 +694,12 @@ const App = {
     UI: {
         init() {
             this.setTheme(App.data.settings.theme, true);
+            if (App.data.settings.primaryColor) {
+                this.setThemeColor(App.data.settings.primaryColor);
+            }
+            if (App.data.settings.fontSize) {
+                document.documentElement.style.fontSize = `${App.data.settings.fontSize}px`;
+            }
             this.updateHeader();
         },
         updateActiveNav(page) {
@@ -552,6 +721,23 @@ const App = {
                 this.showToast(`Theme set to ${theme}`);
             }
         },
+        setThemeColor(color) {
+            document.documentElement.style.setProperty('--primary-color', color);
+            const rgb = color.match(/\w\w/g).map(x => parseInt(x, 16));
+            document.documentElement.style.setProperty('--primary-color-rgb', rgb.join(', '));
+            App.data.settings.primaryColor = color;
+            App.DataManager.save('settings');
+        },
+
+        adjustFontSize(amount) {
+            const root = document.documentElement;
+            const currentSize = parseFloat(getComputedStyle(root).fontSize);
+            const newSize = currentSize + amount;
+            root.style.fontSize = `${newSize}px`;
+            App.data.settings.fontSize = newSize;
+            App.DataManager.save('settings');
+        },
+
         showToast(message, type = 'success') {
             const toast = createEl('div', { className: `toast toast-${type}`, textContent: message });
             App.DOM.els.toastContainer.appendChild(toast);
