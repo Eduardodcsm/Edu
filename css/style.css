@@ -47,6 +47,7 @@
 }
 
 *, *::before, *::after {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -63,11 +64,14 @@ body {
     animation: gradientBG 15s ease infinite;
     color: var(--text-color);
     line-height: 1.6;
+    -webkit-transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
     transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
     display: flex;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 @keyframes gradientBG {
@@ -92,6 +96,7 @@ h1 { color: var(--secondary-color); }
 a {
     color: var(--secondary-color);
     text-decoration: none;
+    -webkit-transition: color var(--transition-speed) ease;
     transition: color var(--transition-speed) ease;
 }
 a:hover { color: var(--primary-color); }
@@ -118,6 +123,7 @@ button {
     width: var(--sidebar-width);
     height: 100vh;
     background-color: var(--surface-color);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-right: 1px solid var(--border-color);
     position: sticky;
@@ -125,6 +131,7 @@ button {
     padding: 1.5rem 1rem;
     display: flex;
     flex-direction: column;
+    -webkit-transition: width var(--transition-speed) ease, background-color var(--transition-speed) ease, -webkit-transform var(--transition-speed) ease;
     transition: width var(--transition-speed) ease, background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
 #main-sidebar.collapsed { width: var(--sidebar-width-collapsed); align-items: center; }
@@ -132,13 +139,19 @@ button {
 
 #sidebar-toggle {
     background: var(--surface-solid-color);
+    -webkit-box-shadow: 0 0 10px var(--shadow-color);
     box-shadow: 0 0 10px var(--shadow-color);
+    -webkit-transition: -webkit-transform var(--transition-speed) ease;
     transition: transform var(--transition-speed) ease;
 }
-#sidebar-toggle:hover { transform: scale(1.1) rotate(180deg); }
+#sidebar-toggle:hover { 
+    -webkit-transform: scale(1.1) rotate(180deg);
+    transform: scale(1.1) rotate(180deg); 
+}
 
 .main-nav .nav-link {
     color: var(--text-light-color);
+    -webkit-transition: all var(--transition-speed) ease;
     transition: all var(--transition-speed) ease;
     width: 100%;
     display: flex;
@@ -150,20 +163,27 @@ button {
 .main-nav .nav-link:hover {
     background-color: var(--primary-color);
     color: white;
+    -webkit-box-shadow: 0 0 15px var(--accent-glow);
     box-shadow: 0 0 15px var(--accent-glow);
+    -webkit-transform: translateX(5px);
     transform: translateX(5px);
 }
 .main-nav .nav-link.active {
     background-color: var(--primary-color);
     color: white;
+    -webkit-box-shadow: 0 0 20px var(--accent-glow), inset 0 0 5px rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 20px var(--accent-glow), inset 0 0 5px rgba(255, 255, 255, 0.2);
 }
-#main-sidebar.collapsed .main-nav .nav-link:hover { transform: translateX(0) scale(1.1); }
+#main-sidebar.collapsed .main-nav .nav-link:hover { 
+    -webkit-transform: translateX(0) scale(1.1);
+    transform: translateX(0) scale(1.1); 
+}
 
 #main-content {
     flex-grow: 1;
     padding: 2rem;
     width: calc(100vw - var(--sidebar-width));
+    -webkit-transition: width var(--transition-speed) ease;
     transition: width var(--transition-speed) ease;
 }
 #main-sidebar.collapsed + #main-content { width: calc(100vw - var(--sidebar-width-collapsed)); }
@@ -175,6 +195,7 @@ button {
 }
 .streak-counter, .xp-badge {
     background-color: var(--surface-color);
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     border: 1px solid var(--border-color);
     padding: 0.5rem 1.25rem;
@@ -183,16 +204,21 @@ button {
 /* --- FUTURISTIC COMPONENTS --- */
 .card {
     background-color: var(--surface-color);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
+    -webkit-box-shadow: 0 4px 20px var(--shadow-color);
     box-shadow: 0 4px 20px var(--shadow-color);
+    -webkit-transition: -webkit-transform var(--transition-speed) ease, -webkit-box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
     transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 .card:hover {
+    -webkit-transform: translateY(-8px);
     transform: translateY(-8px);
+    -webkit-box-shadow: 0 8px 30px var(--shadow-color);
     box-shadow: 0 8px 30px var(--shadow-color);
     border-color: var(--border-hover-color);
 }
@@ -204,6 +230,7 @@ button {
     cursor: pointer;
     font-weight: bold;
     text-align: center;
+    -webkit-transition: all var(--transition-speed) ease;
     transition: all var(--transition-speed) ease;
     position: relative;
     overflow: hidden;
@@ -217,6 +244,7 @@ button {
     width: 100%;
     height: 100%;
     background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    -webkit-transition: left var(--transition-speed) ease;
     transition: left var(--transition-speed) ease;
     z-index: -1;
 }
@@ -225,10 +253,12 @@ button {
 .btn-primary { 
     background-color: var(--primary-color); 
     color: white;
+    -webkit-box-shadow: 0 0 10px var(--accent-glow);
     box-shadow: 0 0 10px var(--accent-glow);
 }
 .btn-primary:hover { 
     background-color: #006fe6; 
+    -webkit-box-shadow: 0 0 20px var(--accent-glow);
     box-shadow: 0 0 20px var(--accent-glow);
 }
 .btn-success { background-color: var(--success-color); color: white; }
@@ -247,25 +277,34 @@ button {
 
 #page-lessons .level-selector .level-card.active {
     border-color: var(--secondary-color);
+    -webkit-box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 
 /* --- FUTURISTIC FLASHCARDS --- */
 #flashcard-container {
+    -webkit-perspective: 1500px;
     perspective: 1500px;
 }
 .flashcard {
+    -webkit-transition: -webkit-transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
-.flashcard.flipped { transform: rotateY(180deg); }
+.flashcard.flipped { 
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg); 
+}
 .flashcard-face {
     position: absolute;
     width: 100%;
     height: 100%;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     background-color: var(--surface-solid-color);
     border: 1px solid var(--border-color);
+    -webkit-box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
     box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
     display: flex;
     flex-direction: column;
@@ -275,6 +314,7 @@ button {
     border-radius: 16px;
 }
 .flashcard-back {
+    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
 .flashcard-word {
@@ -295,7 +335,7 @@ button {
 .sidebar-footer { padding: 1rem 0; text-align: center; }
 
 .user-profile-menu .menu-toggle { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-color); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-.user-profile-menu .dropdown-menu { display: none; position: absolute; right: 2rem; top: 6rem; background: var(--surface-solid-color); backdrop-filter: blur(10px); border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 4px 12px var(--shadow-color); z-index: 1000; min-width: 200px; }
+.user-profile-menu .dropdown-menu { display: none; position: absolute; right: 2rem; top: 6rem; background: var(--surface-solid-color); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--border-color); border-radius: 8px; -webkit-box-shadow: 0 4px 12px var(--shadow-color); box-shadow: 0 4px 12px var(--shadow-color); z-index: 1000; min-width: 200px; }
 .user-profile-menu.open .dropdown-menu { display: block; }
 .dropdown-menu ul { list-style: none; }
 .dropdown-menu button { display: block; width: 100%; padding: 0.75rem 1.25rem; cursor: pointer; text-align: left; }
@@ -312,6 +352,7 @@ button {
     #main-sidebar { 
         position: fixed; 
         left: 0;
+        -webkit-transform: translateX(-100%);
         transform: translateX(-100%);
         top: 0; 
         height: 100%; 
@@ -319,6 +360,7 @@ button {
         width: 250px;
     }
     #main-sidebar.open { 
+        -webkit-transform: translateX(0);
         transform: translateX(0);
     }
     #main-content { width: 100vw; padding: 1rem; }
@@ -335,8 +377,8 @@ button {
     margin: 2rem auto;
 }
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
 }
 
 /* --- TOAST NOTIFICATIONS --- */
@@ -344,6 +386,7 @@ button {
     position: fixed;
     bottom: 20px;
     left: 50%;
+    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     z-index: 9999;
     display: flex;
@@ -355,11 +398,14 @@ button {
     border-radius: 8px;
     color: white;
     opacity: 0;
+    -webkit-transform: translateY(20px);
     transform: translateY(20px);
+    -webkit-transition: opacity 0.5s ease, -webkit-transform 0.5s ease;
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 .toast.show {
     opacity: 1;
+    -webkit-transform: translateY(0);
     transform: translateY(0);
 }
 .toast-success {

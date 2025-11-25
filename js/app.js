@@ -13,6 +13,9 @@ function createEl(tag, options = {}) {
     if (options.onClick) {
         el.addEventListener('click', options.onClick);
     }
+    if (options.children && Array.isArray(options.children)) {
+        options.children.forEach(child => child && el.appendChild(child));
+    }
     return el;
 }
 
@@ -143,8 +146,7 @@ const App = {
                     return;
                 }
 
-                const fragment = document.createDocumentFragment();
-                fragment.appendChild(
+                App.DOM.els.pageContent.appendChild(
                     createEl('div', {
                         id: 'page-home',
                         children: [
@@ -174,6 +176,7 @@ const App = {
                                             createEl('button', {
                                                 className: 'btn btn-outline',
                                                 textContent: '🔊',
+                                                attributes: { 'aria-label': 'Speak word' },
                                                 onClick: () => App.Audio.speak(wordOfTheDay.ukrainian)
                                             })
                                         ]
@@ -183,13 +186,6 @@ const App = {
                         ]
                     })
                 );
-                
-                // Helper to append children
-                fragment.querySelector('#page-home').append(...fragment.querySelector('#page-home').children[0].children);
-                fragment.querySelector('#page-home').append(...fragment.querySelector('#page-home').children[1].children);
-                fragment.querySelector('#page-home').append(...fragment.querySelector('#page-home').children[2].children);
-                
-                App.DOM.els.pageContent.appendChild(fragment);
             }
         },
         lessons: {
@@ -297,7 +293,8 @@ const App = {
         practice: {
             render() {
                  App.DOM.els.pageContent.append(
-                    createEl('div', { id: 'page-practice', children: [
+                    createEl('div', { id: 'page-practice', 
+                        children: [
                         createEl('h2', { textContent: 'Practice Zone' }),
                         createEl('div', { className: 'module-grid', children: [
                             createEl('div', { className: 'card practice-card', style: 'cursor: pointer;', innerHTML: `<h4>Flashcards</h4><p>Review vocabulary with spaced repetition.</p>`, onClick: () => App.Practice.start('flashcards') }),
@@ -390,7 +387,7 @@ const App = {
                     children: [
                         createEl('div', { className: 'flashcard-face flashcard-front', children: [
                             createEl('p', { className: 'ukrainian-text flashcard-word', textContent: this.currentCard.ukrainian }),
-                            createEl('button', { className: 'btn btn-outline', textContent: '🔊', onClick: (e) => { e.stopPropagation(); App.Audio.speak(this.currentCard.ukrainian); } })
+                            createEl('button', { className: 'btn btn-outline', textContent: '🔊', attributes: { 'aria-label': 'Speak word' }, onClick: (e) => { e.stopPropagation(); App.Audio.speak(this.currentCard.ukrainian); } })
                         ]}),
                         createEl('div', { className: 'flashcard-face flashcard-back', innerHTML: `<p><strong>${this.currentCard.english}</strong></p><p class="ipa-text">[${this.currentCard.ipa}]</p><p><em>${this.currentCard.example}</em></p>`})
                     ]

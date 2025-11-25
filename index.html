@@ -46,7 +46,7 @@
 
         <!-- Main Content -->
         <main id="main-content">
-            <button class="mobile-menu-toggle hidden" id="mobile-menu-btn">☰</button>
+            <button class="mobile-menu-toggle hidden" id="mobile-menu-btn" aria-label="Open menu">☰</button>
             <header id="top-header">
                 <div class="streak-counter">
                     <span class="icon">🔥</span>
@@ -58,11 +58,11 @@
                 </div>
                 <div class="user-profile-menu">
                     <button class="menu-toggle" id="user-profile-toggle" aria-label="User menu">U</button>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu" role="menu">
                          <ul>
-                            <li><button data-page="progress">My Progress</button></li>
-                            <li><button data-page="settings">Settings</button></li>
-                            <li><button id="logout-btn">Logout</button></li>
+                            <li role="presentation"><button data-page="progress" role="menuitem">My Progress</button></li>
+                            <li role="presentation"><button data-page="settings" role="menuitem">Settings</button></li>
+                            <li role="presentation"><button id="logout-btn" role="menuitem">Logout</button></li>
                         </ul>
                     </div>
                 </div>
