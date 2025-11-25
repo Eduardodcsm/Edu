@@ -1,3 +1,21 @@
+// A utility function to make creating DOM elements easier
+function createEl(tag, options = {}) {
+    const el = document.createElement(tag);
+    if (options.className) el.className = options.className;
+    if (options.id) el.id = options.id;
+    if (options.textContent) el.textContent = options.textContent;
+    if (options.innerHTML) el.innerHTML = options.innerHTML;
+    if (options.attributes) {
+        for (const [key, value] of Object.entries(options.attributes)) {
+            el.setAttribute(key, value);
+        }
+    }
+    if (options.onClick) {
+        el.addEventListener('click', options.onClick);
+    }
+    return el;
+}
+
 const App = {
     // --- CORE PROPERTIES ---
     data: {
@@ -20,10 +38,10 @@ const App = {
         this.DOM.cacheDOM();
         this.DOM.addEventListeners();
         try {
-            await this.Content.init(); // Wait for content to load
+            await this.Content.init();
             this.DataManager.loadAll();
             this.UI.init();
-            this.Router.navigateTo(this.data.currentPage, true);
+            await this.Router.navigateTo(this.data.currentPage, true);
             this.User.checkDailyLogin();
             console.log("App initialized successfully.");
         } catch (error) {
@@ -47,23 +65,22 @@ const App = {
             this.els.userProfileMenu = document.querySelector('.user-profile-menu');
             this.els.streakValue = document.getElementById('streak-value');
             this.els.xpValue = document.getElementById('xp-value');
-            this.els.darkModeToggle = document.getElementById('dark-mode-toggle');
             this.els.darkModeCheckbox = document.getElementById('dark-mode-checkbox');
+            this.els.toastContainer = document.getElementById('toast-container');
         },
         addEventListeners() {
             this.els.sidebarToggle.addEventListener('click', () => this.els.sidebar.classList.toggle('collapsed'));
             this.els.mobileMenuBtn.addEventListener('click', () => this.els.sidebar.classList.toggle('open'));
+            
             this.els.userProfileToggle.addEventListener('click', (e) => {
                 e.stopPropagation();
                 this.els.userProfileMenu.classList.toggle('open');
             });
             
-            document.addEventListener('click', (e) => {
-                if (!this.els.userProfileMenu.contains(e.target)) {
-                    this.els.userProfileMenu.classList.remove('open');
-                }
+            document.addEventListener('click', () => {
+                this.els.userProfileMenu.classList.remove('open');
             });
-            
+
             this.els.navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -71,30 +88,46 @@ const App = {
                     this.els.sidebar.classList.remove('open');
                 });
             });
-            
+
             this.els.darkModeCheckbox.addEventListener('change', (e) => {
                  App.UI.setTheme(e.target.checked ? 'dark' : 'light');
+            });
+
+            // Add listeners for the new buttons in the user profile dropdown
+            this.els.userProfileMenu.addEventListener('click', (e) => {
+                if (e.target.dataset.page) {
+                    App.Router.navigateTo(e.target.dataset.page);
+                } else if (e.target.id === 'logout-btn') {
+                    // Handle logout
+                    App.UI.showToast("Logged out successfully.");
+                }
             });
         }
     },
 
     // --- ROUTER ---
     Router: {
-        navigateTo(page, isInitial = false) {
-            if (!page || App.data.currentPage === page && !isInitial) return;
+        async navigateTo(page, isInitial = false) {
+            if (!page || (App.data.currentPage === page && !isInitial)) return;
             App.data.currentPage = page;
             
             const pageRenderer = App.Pages[page];
+            App.DOM.els.pageContent.innerHTML = ''; // Clear previous content
+            App.DOM.els.pageContent.appendChild(createEl('div', { className: 'loading-spinner' }));
+
+            // Allow spinner to render
+            await new Promise(resolve => setTimeout(resolve, 50));
+
+            App.DOM.els.pageContent.innerHTML = ''; // Clear spinner
+
             if (pageRenderer) {
-                App.DOM.els.pageContent.innerHTML = '<div class="loading-spinner"></div>';
-                // Use a short timeout to allow the spinner to render before the main content
-                setTimeout(() => {
-                   App.DOM.els.pageContent.innerHTML = pageRenderer.render();
-                   if(pageRenderer.init) pageRenderer.init();
-                   App.UI.updateActiveNav(page);
-                }, 50);
+                pageRenderer.render();
+                if (pageRenderer.init) {
+                    pageRenderer.init();
+                }
+                App.UI.updateActiveNav(page);
             } else {
-                App.DOM.els.pageContent.innerHTML = `<h2>Page not found: ${page}</h2>`;
+                App.DOM.els.pageContent.appendChild(createEl('h2', { textContent: `Page not found: ${page}` }));
             }
         },
     },
@@ -105,112 +138,154 @@ const App = {
             render() {
                 const user = App.data.userProfile;
                 const wordOfTheDay = App.Content.getWordOfTheDay();
-                if (!user || !wordOfTheDay) return '<div class="loading-spinner"></div>';
-                return `
-                    <div id="page-home">
-                        <div class="welcome-header">
-                            <h1>Привіт, ${user.name}!</h1>
-                            <p>Welcome back! Ready to learn some Ukrainian?</p>
-                        </div>
-                        <div class="stats-grid">
-                            <div class="card">
-                                <h4>Words Learned</h4>
-                                <p class="ukrainian-text">${App.data.vocabulary.filter(v => v.mastery > 0).length}</p>
-                            </div>
-                            <div class="card">
-                                <h4>Modules Completed</h4>
-                                <p class="ukrainian-text">${Object.values(App.data.progress.modulesCompleted).flat().length}</p>
-                            </div>
-                            <div class="card">
-                                <h4>Current Level</h4>
-                                <p class="ukrainian-text">${user.level}</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <h3>Word of the Day</h3>
-                            <div class="d-flex justify-between align-center">
-                                 <div>
-                                    <p class="ukrainian-text">${wordOfTheDay.ukrainian}</p>
-                                    <p><em>${wordOfTheDay.english}</em></p>
-                                 </div>
-                                 <button class="btn btn-outline" onclick="App.Audio.speak('${wordOfTheDay.ukrainian}')">🔊</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                if (!user || !wordOfTheDay) {
+                    App.DOM.els.pageContent.appendChild(createEl('div', { className: 'loading-spinner' }));
+                    return;
+                }
+
+                const fragment = document.createDocumentFragment();
+                fragment.appendChild(
+                    createEl('div', {
+                        id: 'page-home',
+                        children: [
+                            createEl('div', {
+                                className: 'welcome-header',
+                                children: [
+                                    createEl('h1', { textContent: `Привіт, ${user.name}!` }),
+                                    createEl('p', { textContent: 'Welcome back! Ready to learn some Ukrainian?' })
+                                ]
+                            }),
+                            createEl('div', {
+                                className: 'stats-grid',
+                                children: [
+                                    createEl('div', { className: 'card', innerHTML: `<h4>Words Learned</h4><p class="ukrainian-text">${App.data.vocabulary.filter(v => v.mastery > 0).length}</p>` }),
+                                    createEl('div', { className: 'card', innerHTML: `<h4>Modules Completed</h4><p class="ukrainian-text">${Object.values(App.data.progress.modulesCompleted).flat().length}</p>` }),
+                                    createEl('div', { className: 'card', innerHTML: `<h4>Current Level</h4><p class="ukrainian-text">${user.level}</p>` })
+                                ]
+                            }),
+                            createEl('div', {
+                                className: 'card',
+                                children: [
+                                    createEl('h3', { textContent: 'Word of the Day' }),
+                                    createEl('div', {
+                                        className: 'd-flex justify-between align-center',
+                                        children: [
+                                            createEl('div', { innerHTML: `<p class="ukrainian-text">${wordOfTheDay.ukrainian}</p><p><em>${wordOfTheDay.english}</em></p>` }),
+                                            createEl('button', {
+                                                className: 'btn btn-outline',
+                                                textContent: '🔊',
+                                                onClick: () => App.Audio.speak(wordOfTheDay.ukrainian)
+                                            })
+                                        ]
+                                    })
+                                ]
+                            })
+                        ]
+                    })
+                );
+                
+                // Helper to append children
+                fragment.querySelector('#page-home').append(...fragment.querySelector('#page-home').children[0].children);
+                fragment.querySelector('#page-home').append(...fragment.querySelector('#page-home').children[1].children);
+                fragment.querySelector('#page-home').append(...fragment.querySelector('#page-home').children[2].children);
+                
+                App.DOM.els.pageContent.appendChild(fragment);
             }
         },
         lessons: {
-            render() {
-                const levels = Object.keys(App.data.content.levels);
-                let levelSelectorHTML = levels.map(level => {
-                    const levelData = App.data.content.levels[level];
-                    return `
-                    <div class="card level-card ${level === App.data.currentLevel ? 'active' : ''}" onclick="App.Pages.lessons.selectLevel(event, '${level}')">
-                        <h3>${level}</h3>
-                        <p>${levelData.name}</p>
-                    </div>
-                `}).join('');
+             render() {
+                const fragment = document.createDocumentFragment();
+                const pageContainer = createEl('div', { id: 'page-lessons' });
+                
+                pageContainer.appendChild(createEl('h2', { textContent: 'Lessons' }));
 
-                return `
-                    <div id="page-lessons">
-                        <h2>Lessons</h2>
-                        <div class="level-selector">${levelSelectorHTML}</div>
-                        <h3 id="module-list-header">Modules for Level ${App.data.currentLevel}</h3>
-                        <div class="module-grid" id="module-grid-container">
-                            ${this.renderModules(App.data.currentLevel)}
-                        </div>
-                    </div>
-                `;
+                const levelSelector = createEl('div', { className: 'level-selector' });
+                const levels = Object.keys(App.data.content.levels);
+                levels.forEach(level => {
+                    const levelData = App.data.content.levels[level];
+                    const card = createEl('div', {
+                        className: `card level-card ${level === App.data.currentLevel ? 'active' : ''}`,
+                        innerHTML: `<h3>${level}</h3><p>${levelData.name}</p>`,
+                        onClick: (e) => this.selectLevel(e, level)
+                    });
+                    levelSelector.appendChild(card);
+                });
+                pageContainer.appendChild(levelSelector);
+
+                pageContainer.appendChild(createEl('h3', { id: 'module-list-header', textContent: `Modules for Level ${App.data.currentLevel}` }));
+                
+                const moduleGrid = createEl('div', { className: 'module-grid', id: 'module-grid-container' });
+                pageContainer.appendChild(moduleGrid);
+                
+                fragment.appendChild(pageContainer);
+                App.DOM.els.pageContent.appendChild(fragment);
+                
+                this.renderModules(App.data.currentLevel); // Initial module render
             },
             renderModules(level) {
+                const container = document.getElementById('module-grid-container');
+                container.innerHTML = ''; // Clear previous modules
                 const modules = App.data.content.levels[level]?.modules || [];
+
                 if (modules.length === 0) {
-                    return `<div class="card"><p>Modules for level ${level} are coming soon!</p></div>`;
+                    container.appendChild(createEl('div', { className: 'card', innerHTML: `<p>Modules for level ${level} are coming soon!</p>` }));
+                    return;
                 }
-                return modules.map((mod, index) => `
-                    <div class="card module-card">
-                        <div class="module-content">
-                            <h4>${mod.title}</h4>
-                            <p>${mod.description}</p>
-                        </div>
-                        <div class="module-footer">
-                            <div class="progress-bar">
-                                <div class="progress-bar-inner" style="width: ${App.User.getModuleProgress(level, index)}%;"></div>
-                            </div>
-                            <button class="btn btn-primary" onclick="App.Pages.lessons.startLesson('${level}', ${index}, 0)">Start</button>
-                        </div>
-                    </div>
-                `).join('');
+
+                modules.forEach((mod, index) => {
+                    const card = createEl('div', {
+                        className: 'card module-card',
+                        children: [
+                            createEl('div', { className: 'module-content', innerHTML: `<h4>${mod.title}</h4><p>${mod.description}</p>` }),
+                            createEl('div', {
+                                className: 'module-footer',
+                                children: [
+                                    createEl('div', { className: 'progress-bar', innerHTML: `<div class="progress-bar-inner" style="width: ${App.User.getModuleProgress(level, index)}%;"></div>` }),
+                                    createEl('button', { className: 'btn btn-primary', textContent: 'Start', onClick: () => this.startLesson(level, index, 0) })
+                                ]
+                            })
+                        ]
+                    });
+                     container.appendChild(card);
+                });
             },
             selectLevel(event, level) {
                 App.data.currentLevel = level;
                 document.getElementById('module-list-header').innerText = `Modules for Level ${level}`;
-                document.getElementById('module-grid-container').innerHTML = this.renderModules(level);
                 document.querySelectorAll('.level-card').forEach(c => c.classList.remove('active'));
                 event.currentTarget.classList.add('active');
+                this.renderModules(level);
             },
             startLesson(levelId, moduleId, lessonIndex) {
                 const module = App.data.content.levels[levelId].modules[moduleId];
                 const lesson = module.lessons[lessonIndex];
                 
-                let contentHTML = `
-                    <div id="lesson-view">
-                        <div class="lesson-header">
-                            <h2>${lesson.title}</h2>
-                            <span>${lessonIndex + 1} / ${module.lessons.length}</span>
-                        </div>
-                        <div class="progress-bar mb-3">
-                            <div class="progress-bar-inner" style="width: ${((lessonIndex + 1) / module.lessons.length) * 100}%;"></div>
-                        </div>
-                        <div class="card lesson-content">${lesson.content}</div>
-                        <div class="lesson-nav">
-                            ${lessonIndex > 0 ? `<button class="btn btn-outline" onclick="App.Pages.lessons.startLesson('${levelId}', ${moduleId}, ${lessonIndex - 1})">Previous</button>` : '<div></div>'}
-                            ${lessonIndex < module.lessons.length - 1 ? `<button class="btn btn-primary" onclick="App.Pages.lessons.startLesson('${levelId}', ${moduleId}, ${lessonIndex + 1})">Next</button>` : `<button class="btn btn-success" onclick="App.Pages.lessons.finishModule('${levelId}', ${moduleId})">Finish Module</button>`}
-                        </div>
-                    </div>
-                `;
-                App.DOM.els.pageContent.innerHTML = contentHTML;
+                const fragment = document.createDocumentFragment();
+                const lessonView = createEl('div', { id: 'lesson-view' });
+
+                lessonView.append(
+                    createEl('div', { className: 'lesson-header', innerHTML: `<h2>${lesson.title}</h2><span>${lessonIndex + 1} / ${module.lessons.length}</span>` }),
+                    createEl('div', { className: 'progress-bar mb-3', innerHTML: `<div class="progress-bar-inner" style="width: ${((lessonIndex + 1) / module.lessons.length) * 100}%;"></div>` }),
+                    createEl('div', { className: 'card lesson-content', innerHTML: lesson.content })
+                );
+
+                const nav = createEl('div', { className: 'lesson-nav' });
+                if (lessonIndex > 0) {
+                    nav.appendChild(createEl('button', { className: 'btn btn-outline', textContent: 'Previous', onClick: () => this.startLesson(levelId, moduleId, lessonIndex - 1) }));
+                } else {
+                    nav.appendChild(createEl('div'));
+                }
+
+                if (lessonIndex < module.lessons.length - 1) {
+                    nav.appendChild(createEl('button', { className: 'btn btn-primary', textContent: 'Next', onClick: () => this.startLesson(levelId, moduleId, lessonIndex + 1) }));
+                } else {
+                    nav.appendChild(createEl('button', { className: 'btn btn-success', textContent: 'Finish Module', onClick: () => this.finishModule(levelId, moduleId) }));
+                }
+                lessonView.appendChild(nav);
+                
+                fragment.appendChild(lessonView);
+                App.DOM.els.pageContent.innerHTML = '';
+                App.DOM.els.pageContent.appendChild(fragment);
             },
             finishModule(levelId, moduleId) {
                 App.User.addXP(25);
@@ -221,46 +296,46 @@ const App = {
         },
         practice: {
             render() {
-                return `
-                <div id="page-practice">
-                    <h2>Practice Zone</h2>
-                    <div class="module-grid">
-                        <div class="card practice-card" style="cursor: pointer;" onclick="App.Practice.start('flashcards')">
-                            <h4>Flashcards</h4>
-                            <p>Review vocabulary with spaced repetition.</p>
-                        </div>
-                        <div class="card practice-card" style="cursor: pointer;" onclick="App.Practice.start('pronunciation')">
-                            <h4>Pronunciation</h4>
-                            <p>Record and compare your pronunciation.</p>
-                        </div>
-                        <div class="card practice-card" style="cursor: pointer;" onclick="App.Practice.start('quiz')">
-                            <h4>Vocabulary Quiz</h4>
-                            <p>Test your knowledge with various quiz types.</p>
-                        </div>
-                    </div>
-                </div>`;
+                 App.DOM.els.pageContent.append(
+                    createEl('div', { id: 'page-practice', children: [
+                        createEl('h2', { textContent: 'Practice Zone' }),
+                        createEl('div', { className: 'module-grid', children: [
+                            createEl('div', { className: 'card practice-card', style: 'cursor: pointer;', innerHTML: `<h4>Flashcards</h4><p>Review vocabulary with spaced repetition.</p>`, onClick: () => App.Practice.start('flashcards') }),
+                            createEl('div', { className: 'card practice-card', style: 'cursor: pointer;', innerHTML: `<h4>Pronunciation</h4><p>Record and compare your pronunciation.</p>`, onClick: () => App.Practice.start('pronunciation') }),
+                            createEl('div', { className: 'card practice-card', style: 'cursor: pointer;', innerHTML: `<h4>Vocabulary Quiz</h4><p>Test your knowledge with various quiz types.</p>`, onClick: () => App.Practice.start('quiz') })
+                        ]})
+                    ]})
+                 );
             }
         },
-        community: { render() { return `<div class="card"><h2>Community (Coming Soon)</h2><p>Connect with other learners, find language partners, and join study groups.</p></div>`; } },
-        progress: { render() { return `<div class="card"><h2>My Progress (Coming Soon)</h2><p>Track your learning journey, view achievements, and set goals.</p></div>`; } },
-        resources: { render() { return `<div class="card"><h2>Resources (Coming Soon)</h2><p>Find useful links, grammar tables, and cultural notes.</p></div>`; } },
-        settings: { 
-             render() { 
-                 return `<div class="card"><h2>Settings (Coming Soon)</h2><p>Manage your account, preferences, and data.</p></div>`;
-            }
+        _createComingSoonPage(title, text) {
+            return {
+                render() {
+                    App.DOM.els.pageContent.appendChild(
+                        createEl('div', { className: 'card', children: [
+                            createEl('h2', { textContent: `${title} (Coming Soon)` }),
+                            createEl('p', { textContent: text })
+                        ]})
+                    );
+                }
+            };
         },
+        community: null, // Will be initialized below
+        progress: null,
+        resources: null,
+        settings: null,
     },
     
     // --- PRACTICE MODULES ---
     Practice: {
-        start(type) {
-            const container = App.DOM.els.pageContent;
+         start(type) {
+            App.DOM.els.pageContent.innerHTML = ''; // Clear page
             switch(type) {
                 case 'flashcards':
                     this.Flashcards.start();
                     break;
                 default:
-                    container.innerHTML = `<div class="card"><h2>${type} practice is not available yet.</h2></div>`;
+                    App.DOM.els.pageContent.appendChild(createEl('div', { className: 'card', innerHTML: `<h2>${type} practice is not available yet.</h2>` }));
             }
         },
         
@@ -269,24 +344,36 @@ const App = {
             deck: [],
             
             start() {
-                this.deck = [...App.data.vocabulary].sort(() => 0.5 - Math.random()).slice(0, 10); // Random 10 cards
+                this.deck = [...App.data.vocabulary].sort(() => 0.5 - Math.random()).slice(0, 10);
                 if (this.deck.length === 0) {
-                     App.DOM.els.pageContent.innerHTML = `<h2>No Vocabulary Found</h2><p>Start some lessons to build your vocabulary list first.</p><button class="btn btn-primary" onclick="App.Router.navigateTo('lessons')">Go to Lessons</button>`;
+                     App.DOM.els.pageContent.append(
+                         createEl('h2', { textContent: 'No Vocabulary Found' }),
+                         createEl('p', { textContent: 'Start some lessons to build your vocabulary list first.' }),
+                         createEl('button', { className: 'btn btn-primary', textContent: 'Go to Lessons', onClick: () => App.Router.navigateTo('lessons') })
+                     );
                      return;
                 }
-                App.DOM.els.pageContent.innerHTML = `
-                    <div id="flashcard-practice">
-                        <h2 class="text-center">Flashcards</h2>
-                        <div id="flashcard-container"></div>
-                        <div class="flashcard-actions d-flex justify-between" style="max-width: 500px; margin: 2rem auto;"></div>
-                    </div>
-                `;
+                
+                App.DOM.els.pageContent.append(
+                    createEl('div', { id: 'flashcard-practice', children: [
+                        createEl('h2', { className: 'text-center', textContent: 'Flashcards' }),
+                        createEl('div', { id: 'flashcard-container' }),
+                        createEl('div', { className: 'flashcard-actions d-flex justify-between', style: 'max-width: 500px; margin: 2rem auto;' })
+                    ]})
+                );
                 this.nextCard();
             },
             
             nextCard() {
                 if (this.deck.length === 0) {
-                    App.DOM.els.pageContent.innerHTML = `<div class="card text-center"><h2>Practice Complete!</h2><p>You've reviewed all cards for this session.</p><button class="btn btn-primary" onclick="App.Router.navigateTo('practice')">Back to Practice</button></div>`;
+                    App.DOM.els.pageContent.innerHTML = '';
+                    App.DOM.els.pageContent.appendChild(
+                        createEl('div', { className: 'card text-center', children: [
+                            createEl('h2', { textContent: 'Practice Complete!' }),
+                            createEl('p', { textContent: "You've reviewed all cards for this session." }),
+                            createEl('button', { className: 'btn btn-primary', textContent: 'Back to Practice', onClick: () => App.Router.navigateTo('practice') })
+                        ]})
+                    );
                     return;
                 }
                 this.currentCard = this.deck.pop();
@@ -295,30 +382,31 @@ const App = {
             
             renderCard() {
                 const cardContainer = document.getElementById('flashcard-container');
-                cardContainer.innerHTML = `
-                     <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                        <div class="flashcard-face flashcard-front">
-                            <p class="ukrainian-text flashcard-word">${this.currentCard.ukrainian}</p>
-                            <button class="btn btn-outline" onclick="event.stopPropagation(); App.Audio.speak('${this.currentCard.ukrainian}')">🔊</button>
-                        </div>
-                        <div class="flashcard-face flashcard-back">
-                            <p><strong>${this.currentCard.english}</strong></p>
-                            <p class="ipa-text">[${this.currentCard.ipa}]</p>
-                            <p><em>${this.currentCard.example}</em></p>
-                        </div>
-                    </div>
-                `;
+                cardContainer.innerHTML = '';
+                
+                const flashcard = createEl('div', {
+                    className: 'flashcard',
+                    onClick: (e) => e.currentTarget.classList.toggle('flipped'),
+                    children: [
+                        createEl('div', { className: 'flashcard-face flashcard-front', children: [
+                            createEl('p', { className: 'ukrainian-text flashcard-word', textContent: this.currentCard.ukrainian }),
+                            createEl('button', { className: 'btn btn-outline', textContent: '🔊', onClick: (e) => { e.stopPropagation(); App.Audio.speak(this.currentCard.ukrainian); } })
+                        ]}),
+                        createEl('div', { className: 'flashcard-face flashcard-back', innerHTML: `<p><strong>${this.currentCard.english}</strong></p><p class="ipa-text">[${this.currentCard.ipa}]</p><p><em>${this.currentCard.example}</em></p>`})
+                    ]
+                });
+                cardContainer.appendChild(flashcard);
                 
                 const actionsContainer = document.querySelector('.flashcard-actions');
-                actionsContainer.innerHTML = `
-                    <button class="btn btn-error" onclick="App.Practice.Flashcards.handleAnswer(0)">Review</button>
-                    <button class="btn btn-secondary" onclick="App.Practice.Flashcards.handleAnswer(1)">Learning</button>
-                    <button class="btn btn-success" onclick="App.Practice.Flashcards.handleAnswer(2)">Known</button>
-                `;
+                actionsContainer.innerHTML = '';
+                actionsContainer.append(
+                    createEl('button', { className: 'btn btn-error', textContent: 'Review', onClick: () => this.handleAnswer(0) }),
+                    createEl('button', { className: 'btn btn-secondary', textContent: 'Learning', onClick: () => this.handleAnswer(1) }),
+                    createEl('button', { className: 'btn btn-success', textContent: 'Known', onClick: () => this.handleAnswer(2) })
+                );
             },
             
             handleAnswer(masteryLevel) {
-                // In a real SRS, this would update the card's review schedule
                 const vocabItem = App.data.vocabulary.find(v => v.ukrainian === this.currentCard.ukrainian);
                 if(vocabItem) vocabItem.mastery = masteryLevel;
                 App.User.addXP(masteryLevel + 1);
@@ -350,15 +438,15 @@ const App = {
             const user = this.load('userProfile');
             if (user) {
                 App.data.userProfile = user;
-                App.data.settings = this.load('settings');
-                App.data.vocabulary = this.load('vocabulary');
-                App.data.progress = this.load('progress');
-                App.data.achievements = this.load('achievements');
-                App.data.studyHistory = this.load('studyHistory');
+                App.data.settings = this.load('settings') || { theme: 'dark', audioAutoplay: true };
+                App.data.vocabulary = this.load('vocabulary') || [];
+                App.data.progress = this.load('progress') || { lessonsCompleted: [], modulesCompleted: {}, quizzesCompleted: [] };
+                App.data.achievements = this.load('achievements') || [];
+                App.data.studyHistory = this.load('studyHistory') || [];
             } else {
                 // First time user
                 App.data.userProfile = { name: 'Student', level: 'A1', xp: 0, streak: 0, longestStreak: 0, lastLogin: null, joinDate: new Date().toISOString() };
-                App.data.settings = { theme: 'light', audioAutoplay: true };
+                App.data.settings = { theme: 'dark', audioAutoplay: true };
                 App.data.vocabulary = App.Content.getInitialVocabulary();
                 App.data.progress = { lessonsCompleted: [], modulesCompleted: {}, quizzesCompleted: [] };
                 App.data.achievements = [];
@@ -367,7 +455,6 @@ const App = {
             }
         },
         saveAll() {
-            // Don't save content, as it's loaded from JSON
             const keysToSave = ['userProfile', 'settings', 'vocabulary', 'progress', 'achievements', 'studyHistory'];
             keysToSave.forEach(key => this.save(key));
         }
@@ -387,7 +474,7 @@ const App = {
                 console.log("Content loaded from JSON.");
             } catch (error) {
                 console.error("Failed to load content:", error);
-                throw error; // Re-throw to be caught by the main init
+                throw error;
             }
         },
         getInitialVocabulary() {
@@ -407,7 +494,6 @@ const App = {
             App.data.userProfile.xp += amount;
             App.UI.updateHeader();
             App.DataManager.save('userProfile');
-            // Check for level up
         },
         checkDailyLogin() {
             const today = new Date().toDateString();
@@ -440,7 +526,6 @@ const App = {
             }
         },
         getModuleProgress(levelId, moduleId) {
-            // For now, it's just completed or not. Could be more granular later.
             return App.data.progress.modulesCompleted[levelId]?.includes(moduleId) ? 100 : 0;
         }
     },
@@ -471,35 +556,26 @@ const App = {
             }
         },
         showToast(message, type = 'success') {
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.textContent = message;
-            document.body.appendChild(toast);
+            const toast = createEl('div', { className: `toast toast-${type}`, textContent: message });
+            App.DOM.els.toastContainer.appendChild(toast);
             
-            toast.style.position = 'fixed';
-            toast.style.bottom = '20px';
-            toast.style.left = '50%';
-            toast.style.transform = 'translateX(-50%)';
-            toast.style.background = type === 'error' ? 'var(--error-color)' : 'var(--primary-color)';
-            toast.style.color = 'white';
-            toast.style.padding = '1rem 2rem';
-            toast.style.borderRadius = '8px';
-            toast.style.zIndex = '9999';
-            toast.style.opacity = '0';
-            toast.style.transition = 'opacity 0.5s ease, bottom 0.5s ease';
-            
-            setTimeout(() => { 
-                toast.style.opacity = '1';
-                toast.style.bottom = '40px';
-            }, 100);
             setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.bottom = '20px';
+                toast.classList.add('show');
+            }, 100);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
                 setTimeout(() => toast.remove(), 500);
             }, 3000);
         },
         showError(message) {
-            App.DOM.els.pageContent.innerHTML = `<div class="card text-center" style="border-color: var(--error-color);"><h2>An Error Occurred</h2><p>${message}</p></div>`;
+            App.DOM.els.pageContent.innerHTML = '';
+            App.DOM.els.pageContent.appendChild(
+                createEl('div', { className: 'card text-center', style: 'border-color: var(--error-color);', children: [
+                    createEl('h2', { textContent: 'An Error Occurred' }),
+                    createEl('p', { textContent: message })
+                ]})
+            );
         }
     },
 
@@ -507,7 +583,7 @@ const App = {
     Audio: {
         speak(text) {
             if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); // Cancel any previous speech
+                window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'uk-UA';
                 utterance.rate = 0.9;
@@ -519,17 +595,10 @@ const App = {
     }
 };
 
-// --- Start the App ---
-document.addEventListener('DOMContentLoaded', () => {
-    // Bind `this` for all methods within App modules
-    for (const module of Object.values(App)) {
-        if (typeof module === 'object' && module !== null) {
-            for(const method of Object.keys(module)) {
-                if(typeof module[method] === 'function') {
-                    module[method] = module[method].bind(App);
-                }
-            }
-        }
-    }
-    App.init();
-});
+// --- Initialize Pages & Start App ---
+App.Pages.community = App.Pages._createComingSoonPage('Community', 'Connect with other learners, find language partners, and join study groups.');
+App.Pages.progress = App.Pages._createComingSoonPage('My Progress', 'Track your learning journey, view achievements, and set goals.');
+App.Pages.resources = App.Pages._createComingSoonPage('Resources', 'Find useful links, grammar tables, and cultural notes.');
+App.Pages.settings = App.Pages._createComingSoonPage('Settings', 'Manage your account, preferences, and data.');
+
+document.addEventListener('DOMContentLoaded', () => App.init());

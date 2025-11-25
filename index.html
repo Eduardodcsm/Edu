@@ -26,17 +26,17 @@
 
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#" data-page="home" class="nav-link active"><span class="nav-icon">🏠</span> <span class="nav-text">Home</span></a></li>
-                    <li><a href="#" data-page="lessons" class="nav-link"><span class="nav-icon">📚</span> <span class="nav-text">Lessons</span></a></li>
-                    <li><a href="#" data-page="practice" class="nav-link"><span class="nav-icon">✏️</span> <span class="nav-text">Practice</span></a></li>
-                    <li><a href="#" data-page="community" class="nav-link"><span class="nav-icon">👥</span> <span class="nav-text">Community</span></a></li>
-                    <li><a href="#" data-page="progress" class="nav-link"><span class="nav-icon">📊</span> <span class="nav-text">Progress</span></a></li>
-                    <li><a href="#" data-page="resources" class="nav-link"><span class="nav-icon">💡</span> <span class="nav-text">Resources</span></a></li>
+                    <li><button data-page="home" class="nav-link active"><span class="nav-icon">🏠</span> <span class="nav-text">Home</span></button></li>
+                    <li><button data-page="lessons" class="nav-link"><span class="nav-icon">📚</span> <span class="nav-text">Lessons</span></button></li>
+                    <li><button data-page="practice" class="nav-link"><span class="nav-icon">✏️</span> <span class="nav-text">Practice</span></button></li>
+                    <li><button data-page="community" class="nav-link"><span class="nav-icon">👥</span> <span class="nav-text">Community</span></button></li>
+                    <li><button data-page="progress" class="nav-link"><span class="nav-icon">📊</span> <span class="nav-text">Progress</span></button></li>
+                    <li><button data-page="resources" class="nav-link"><span class="nav-icon">💡</span> <span class="nav-text">Resources</span></button></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
                 <div id="dark-mode-toggle" class="menu-item">
-                    <label class="d-flex align-center justify-between" style="cursor: pointer; width: 100%; padding: 0.5rem;">
+                    <label for="dark-mode-checkbox" class="d-flex align-center justify-between" style="cursor: pointer; width: 100%; padding: 0.5rem;">
                         <span class="nav-text">Dark Mode</span>
                         <input type="checkbox" id="dark-mode-checkbox">
                     </label>
@@ -57,12 +57,12 @@
                     <span id="xp-value">0</span> XP
                 </div>
                 <div class="user-profile-menu">
-                    <div class="menu-toggle" id="user-profile-toggle">U</div>
+                    <button class="menu-toggle" id="user-profile-toggle" aria-label="User menu">U</button>
                     <div class="dropdown-menu">
                          <ul>
-                            <li><a href="#" data-page="progress">My Progress</a></li>
-                            <li><a href="#" data-page="settings">Settings</a></li>
-                            <li><a href="#" id="logout-btn">Logout</a></li>
+                            <li><button data-page="progress">My Progress</button></li>
+                            <li><button data-page="settings">Settings</button></li>
+                            <li><button id="logout-btn">Logout</button></li>
                         </ul>
                     </div>
                 </div>
@@ -74,6 +74,9 @@
             </div>
         </main>
     </div>
+
+    <!-- Toast Container for Notifications -->
+    <div id="toast-container" aria-live="assertive" aria-atomic="true"></div>
 
     <!-- Main Application Script -->
     <script src="js/app.js"></script>
